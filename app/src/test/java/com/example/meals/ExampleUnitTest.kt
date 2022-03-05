@@ -1,4 +1,4 @@
-package com.example.cupcakes
+package com.example.meals
 
 import org.junit.Test
 
