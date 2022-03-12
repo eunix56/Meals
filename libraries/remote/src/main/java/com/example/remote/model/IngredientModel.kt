@@ -1,14 +1,12 @@
-package com.example.domain.entities
+package com.example.remote.model
 
 import com.squareup.moshi.Json
 
 /**
- * Created by EUNICE BAKARE T. on 05/03/2022
+ * Created by EUNICE BAKARE T. on 11/03/2022
  * Email: eunice@reach.africa
  */
-
-//"idIngredient":"135","strIngredient":"Flaked Almonds","strDescription":null,"strType":null
-data class Ingredient(
+data class IngredientModel(
     @Json(name = "idIngredient")
     val id: String,
     @Json(name = "strIngredient")
@@ -17,4 +15,5 @@ data class Ingredient(
     val description: String?,
     @Json(name = "strType")
     val type: String?
-)
+) {
+}

@@ -1,4 +1,4 @@
-package com.example.domain.entities
+package com.example.domain.model
 
 /**
  * Created by EUNICE BAKARE T. on 05/03/2022

@@ -1,6 +1,5 @@
 package com.example.domain.usecase
 
-import com.example.domain.repository.CategoryRepository
 import com.example.domain.repository.IngredientRepository
 import com.example.domain.repository.MealRepository
 
@@ -8,8 +7,8 @@ import com.example.domain.repository.MealRepository
  * Created by EUNICE BAKARE T. on 05/03/2022
  * Email: eunice@reach.africa
  */
-class CategoryMealUseCase(
-    private val categoryRepository: CategoryRepository,
+class FetchIngredientMealsUseCase(
+    private val ingredientRepository: IngredientRepository,
     private val mealRepository: MealRepository
 ) {
 }

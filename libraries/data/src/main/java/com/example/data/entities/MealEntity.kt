@@ -1,4 +1,4 @@
-package com.example.domain.entities
+package com.example.data.entities
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
  */
 
 @JsonClass(generateAdapter = true)
-data class Meal(
+data class MealEntity(
     @Json(name = "idMeal")
     val id: String,
     @Json(name = "strMeal")

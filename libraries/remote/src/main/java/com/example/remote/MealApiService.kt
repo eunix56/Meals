@@ -1,9 +1,9 @@
 package com.example.remote
 
-import com.example.domain.entities.Ingredient
-import com.example.domain.entities.Meal
+import com.example.remote.model.CategoryModel
+import com.example.remote.model.IngredientModel
+import com.example.remote.model.MealModel
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -15,21 +15,22 @@ interface MealApiService {
     @GET("search.php")
     suspend fun getSearchedMealRecipes(
         @Query("s") searchValue: String
-    ): List<Meal>
+    ): List<MealModel>
 
     @GET("filter.php")
     suspend fun getCategoryMealRecipes(
         @Query("c") category: String
-    ): List<Meal>
+    ): List<MealModel>
 
     @GET("filter.php")
     suspend fun getIngredientMeals(
         @Query("i") ingredient: String
-    ): List<Meal>
+    ): List<MealModel>
 
-    @GET("list.php?{fetch}=list")
-    suspend fun getCategoryOrIngredients(
-        @Path("fetch") fetchValue: String
-    )
+    @GET("list.php?c=list")
+    suspend fun getCategories(): List<CategoryModel>
+
+    @GET("list.php?i=list")
+    suspend fun getIngredients(): List<IngredientModel>
 
 }
