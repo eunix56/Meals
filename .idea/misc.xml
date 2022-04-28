@@ -4,11 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/drawable/ic_favourite_24.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/ic_home_24.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/ic_mark_favourite_24.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/ic_recipes_24.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/layout/activity_cupcake.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/activity_meals.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="common/view/src/main/res/drawable/bg_grey_box.xml" value="0.19375" />
         <entry key="common/view/src/main/res/drawable/bg_meal_card.xml" value="0.19375" />
         <entry key="common/view/src/main/res/drawable/ic_empty_screen.xml" value="0.2574074074074074" />
+        <entry key="common/view/src/main/res/layout/item_meal.xml" value="0.1" />
         <entry key="common/view/src/main/res/layout/item_meal_tag.xml" value="0.335" />
         <entry key="common/view/src/main/res/layout/item_searched_meal.xml" value="0.190625" />
         <entry key="common/view/src/main/res/layout/screen_empty_view.xml" value="0.190625" />

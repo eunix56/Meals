@@ -10,11 +10,15 @@ import com.example.home.databinding.HomeFragmentBinding
 
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.Category
+import com.example.domain.usecase.FetchCategoryMealsUseCase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), MealCategory {
     private lateinit var homeFragmentBinding: HomeFragmentBinding
+
 
     companion object {
         fun newInstance() = HomeFragment()

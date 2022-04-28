@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Cupcakes">
+        android:theme="@style/Theme.Meals"
+        android:name="com.example.meals.MealApplication">
         <activity
             android:name="com.example.meals.MealsActivity"
             android:exported="true">

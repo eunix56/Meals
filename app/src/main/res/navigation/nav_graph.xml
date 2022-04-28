@@ -1,22 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.home.HomeFragment"
-        android:label="home_fragment" />
+        android:label="home_fragment"
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_recipeDetailFragment"
+            app:destination="@id/recipesDetailFragment"
+            app:popUpTo="@id/homeFragment">
+            <argument
+                android:name="mealId"
+                app:argType="string"
+                app:nullable="false"
+                android:defaultValue="10000"
+                />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.example.recipes.RecipesFragment"
-        android:label="recipes_fragment" />
+        android:label="recipes_fragment">
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeDetailFragment"
+            app:destination="@id/recipesDetailFragment"
+            app:popUpTo="@id/recipesFragment">
+            <argument
+                android:name="meal"
+                app:argType="com.example.domain.model.Meal" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipesDetailFragment"
+        android:name="com.example.recipes.RecipesDetailFragment"
+        android:label="recipes_detail_fragment"/>
 
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.favourites.FavouriteFragment"
-        android:label="recipes_fragment" />
+        android:label="favourites_fragment">
+        <action
+            android:id="@+id/action_favouriteFragment_to_recipeDetailFragment"
+            app:destination="@id/recipesDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/favouriteFragment">
+            <argument
+                android:name="meal"
+                app:argType="com.example.domain.model.Meal" />
+        </action>
+    </fragment>
 </navigation>
