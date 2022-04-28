@@ -1,5 +1,6 @@
 package com.example.domain.repository
 
+import com.example.domain.handler.DataResult
 import com.example.domain.model.Meal
 import kotlinx.coroutines.flow.Flow
 
@@ -9,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
  * Email: eunice@reach.africa
  */
 interface MealRepository {
-    suspend fun fetchMeals(value: String): Flow<List<Meal>>
+    suspend fun fetchMeals(value: String): Flow<DataResult<List<Meal>>>
 
-    suspend fun fetchCategoryMeals(category: String): Flow<List<Meal>>
+    suspend fun fetchCategoryMeals(category: String): Flow<DataResult<List<Meal>>>
 
-    suspend fun fetchIngredientMeals(ingredient: String): Flow<List<Meal>>
+    suspend fun fetchIngredientMeals(ingredient: String): Flow<DataResult<List<Meal>>>
 }

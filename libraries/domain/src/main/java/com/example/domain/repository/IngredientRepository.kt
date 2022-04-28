@@ -1,5 +1,6 @@
 package com.example.domain.repository
 
+import com.example.domain.handler.DataResult
 import com.example.domain.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 
@@ -8,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
  * Email: eunice@reach.africa
  */
 interface IngredientRepository {
-    suspend fun fetchIngredients(): Flow<List<Ingredient>>
+    suspend fun fetchIngredients(): Flow<DataResult<List<Ingredient>>>
 }

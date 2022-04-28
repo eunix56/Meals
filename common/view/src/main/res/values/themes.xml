@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/big_text</item>
+        <item name="android:lineSpacingExtra">@dimen/big_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="SmallHeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/small_big_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="SubHeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/small_big_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="CategoryTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="SearchTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="CardHeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/big_normal_text</item>
+        <item name="android:textColor">@color/main_dark</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="CardGreyTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="ChipCustomStyle" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="checkedIconEnabled">false</item>
+        <item name="checkedIcon">@null</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+</resources>

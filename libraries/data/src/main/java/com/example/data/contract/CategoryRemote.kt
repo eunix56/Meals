@@ -9,4 +9,6 @@ import com.example.data.entities.CategoryEntity
  */
 interface CategoryRemote {
     suspend fun fetchCategories(): List<CategoryEntity>
+
+    suspend fun fetchFullCategories(): List<CategoryEntity>
 }

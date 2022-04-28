@@ -13,6 +13,8 @@ class RecipeDetailsFragment : Fragment() {
         fun newInstance() = RecipeDetailsFragment()
     }
 
+    //The idea is to use this for the search activity and the home activity for the categories
+
     private lateinit var viewModel: RecipeDetailsViewModel
 
     override fun onCreateView(

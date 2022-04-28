@@ -8,18 +8,18 @@ import com.example.domain.model.Meal
  * Created by EUNICE BAKARE T. on 11/03/2022
  * Email: eunice@reach.africa
  */
-class MealEntityModelMapper()
+class MealEntityModelMapper
     : EntityModelMapper<MealEntity, Meal> {
 
     override fun mapFromEntity(entity: MealEntity): Meal {
         return Meal(
             entity.id,
             entity.mealName,
+            entity.mealImg,
             entity.drink,
             entity.mealCategory,
             entity.mealArea,
             entity.mealSteps,
-            entity.mealImg,
             entity.mealTags,
             entity.mealVideo,
             entity.ingredientOne,
@@ -71,11 +71,11 @@ class MealEntityModelMapper()
         return MealEntity(
             domain.id,
             domain.mealName,
+            domain.mealImg,
             domain.drink,
             domain.mealCategory,
             domain.mealArea,
             domain.mealSteps,
-            domain.mealImg,
             domain.mealTags,
             domain.mealVideo,
             domain.ingredientOne,

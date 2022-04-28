@@ -12,13 +12,19 @@ class CategoryEntityModelMapper: EntityModelMapper<CategoryEntity, Category> {
 
     override fun mapFromEntity(entity: CategoryEntity): Category {
         return Category(
-            entity.categoryName
+            entity.categoryId,
+            entity.categoryName,
+            entity.categoryImg,
+            entity.categoryDesc
         )
     }
 
     override fun mapToEntity(domain: Category): CategoryEntity {
        return CategoryEntity(
-           domain.categoryName
+           domain.categoryId,
+           domain.categoryName,
+           domain.categoryImg,
+           domain.categoryDesc
        )
     }
 }

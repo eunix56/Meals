@@ -5,5 +5,9 @@ package com.example.domain.model
  * Email: eunice@reach.africa
  */
 data class Category(
-    val categoryName: String
+    val categoryId: String?,
+    val categoryName: String,
+    val categoryImg: String?,
+    val categoryDesc: String?,
+    var isSelected: Boolean = false
 )

@@ -33,4 +33,7 @@ interface MealApiService {
     @GET("list.php?i=list")
     suspend fun getIngredients(): List<IngredientModel>
 
+    @GET("categories.php")
+    suspend fun getFullCategories(): List<CategoryModel>
+
 }

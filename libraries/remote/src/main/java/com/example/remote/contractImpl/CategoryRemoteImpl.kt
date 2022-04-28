@@ -19,4 +19,8 @@ class CategoryRemoteImpl(
         return categoryModelEntityMapper.mapModelList(categories)
     }
 
+    override suspend fun fetchFullCategories(): List<CategoryEntity> {
+        val fullCategories = apiService.getFullCategories()
+        return categoryModelEntityMapper.mapModelList(fullCategories)
+    }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_peach">#F76E58</color>
+    <color name="main_dark">#2D2D2D</color>
+    <color name="main_grey">#EAEAEA</color>
+    <color name="dark_grey">#717171</color>
+    <color name="normal_grey">#DADADA</color>
+</resources>

@@ -8,18 +8,18 @@ import com.example.remote.model.MealModel
  * Created by EUNICE BAKARE T. on 11/03/2022
  * Email: eunice@reach.africa
  */
-class MealModelEntityMapper():
+class MealModelEntityMapper:
     RemoteModelEntityMapper<MealModel, MealEntity> {
 
     override fun mapFromModel(model: MealModel): MealEntity {
         return MealEntity(
             model.id,
             model.mealName,
+            model.mealImg,
             model.drink,
             model.mealCategory,
             model.mealArea,
             model.mealSteps,
-            model.mealImg,
             model.mealTags,
             model.mealVideo,
             model.ingredientOne,

@@ -11,20 +11,20 @@ data class MealModel(
     val id: String,
     @Json(name = "strMeal")
     val mealName: String,
+    @Json(name = "strMealThumb")
+    val mealImg: String,
     @Json(name = "strDrinkAlternate")
     val drink: String?,
     @Json(name = "strCategory")
-    val mealCategory: String,
+    val mealCategory: String?,
     @Json(name = "strArea")
-    val mealArea: String,
+    val mealArea: String?,
     @Json(name = "strInstructions")
-    val mealSteps: String,
-    @Json(name = "strMealThumb")
-    val mealImg: String,
+    val mealSteps: String?,
     @Json(name = "strTags")
-    val mealTags: String,
+    val mealTags: String?,
     @Json(name = "strYoutube")
-    val mealVideo: String,
+    val mealVideo: String?,
     @Json(name = "strIngredient1")
     val ingredientOne: String?,
     @Json(name = "strIngredient2")

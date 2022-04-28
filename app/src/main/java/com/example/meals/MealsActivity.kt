@@ -9,6 +9,6 @@ import meals.R
 class MealsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.`activity_meals.xml`)
+        setContentView(R.layout.activity_meals)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.domain.repository
 
+import com.example.domain.handler.DataResult
 import com.example.domain.model.Category
 import kotlinx.coroutines.flow.Flow
 
@@ -8,7 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Email: eunice@reach.africa
  */
 interface CategoryRepository {
-    suspend fun fetchCategories(): Flow<List<Category>>
+    suspend fun fetchCategories(): Flow<DataResult<List<Category>>>
+
+    suspend fun fetchFullCategories(): Flow<DataResult<List<Category>>>
 }
 
 //usecases

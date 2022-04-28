@@ -7,6 +7,12 @@ import com.squareup.moshi.Json
  * Email: eunice@reach.africa
  */
 data class CategoryEntity(
+    @Json(name = "idCategory")
+    val categoryId: String?,
     @Json(name = "strCategory")
-    val categoryName: String
+    val categoryName: String,
+    @Json(name = "strCategoryThumb")
+    val categoryImg: String?,
+    @Json(name = "strCategoryDescription")
+    val categoryDesc: String?
 )
