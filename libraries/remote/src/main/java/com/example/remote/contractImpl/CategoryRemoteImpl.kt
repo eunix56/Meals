@@ -4,12 +4,13 @@ import com.example.data.contract.CategoryRemote
 import com.example.data.entities.CategoryEntity
 import com.example.remote.MealApiService
 import com.example.remote.mapper.CategoryModelEntityMapper
+import javax.inject.Inject
 
 /**
  * Created by EUNICE BAKARE T. on 10/03/2022
  * Email: eunice@reach.africa
  */
-class CategoryRemoteImpl(
+class CategoryRemoteImpl @Inject constructor(
     private val apiService: MealApiService,
     private val categoryModelEntityMapper: CategoryModelEntityMapper
 ): CategoryRemote {

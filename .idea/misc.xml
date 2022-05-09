@@ -26,7 +26,7 @@
         <entry key="features/home/src/main/res/drawable/ic_goat_icons8.xml" value="0.16458333333333333" />
         <entry key="features/home/src/main/res/drawable/ic_meal.xml" value="0.16458333333333333" />
         <entry key="features/home/src/main/res/drawable/ic_search.xml" value="0.18958333333333333" />
-        <entry key="features/home/src/main/res/layout/home_fragment.xml" value="0.165" />
+        <entry key="features/home/src/main/res/layout/home_fragment.xml" value="0.25" />
         <entry key="features/home/src/main/res/layout/item_category.xml" value="0.25" />
         <entry key="features/home/src/main/res/layout/item_category_meal.xml" value="0.165" />
         <entry key="features/home/src/main/res/layout/item_searched_meal.xml" value="0.190625" />
@@ -47,7 +47,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -38,7 +38,9 @@ class HomeFragment : Fragment(), MealCategory {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
+
+        viewModel = ViewModelProvider(this,)[HomeViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -82,6 +84,7 @@ class HomeFragment : Fragment(), MealCategory {
                 }
 
                 if (it.errorMessage?.isNotBlank() == true) {
+                    homeFragmentBinding.tvCategoryHeader.visibility = View.GONE
 
                 }
             }

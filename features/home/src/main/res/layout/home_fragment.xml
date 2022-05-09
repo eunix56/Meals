@@ -28,7 +28,7 @@
         android:text="@string/cook_a_nice_meal_header"
         android:layout_marginTop="@dimen/small_spacing"
         android:theme="@style/HeaderTextView"
-        android:textColor="@color/main_peach"
+        android:textColor="@color/text_peach"
         />
 
     <androidx.appcompat.widget.SearchView

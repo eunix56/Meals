@@ -24,6 +24,21 @@ object MealApiFactory {
         return makeApiService(okHttpClient, moshi)
     }
 
+    fun makeApiService(isDebug: Boolean): MealApiService {
+        val okHttpClient: OkHttpClient = makeOkHttpClient(
+            makeLoggingInterceptor(isDebug)
+        )
+        return makeApiService(okHttpClient)
+    }
+
+    private fun makeApiService(okHttpClient: OkHttpClient): MealApiService {
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+        return retrofit.create(MealApiService::class.java)
+    }
 
     private fun makeApiService(okHttpClient: OkHttpClient, moshi: Moshi): MealApiService {
         val retrofit: Retrofit = Retrofit.Builder()
@@ -33,6 +48,7 @@ object MealApiFactory {
             .build()
         return retrofit.create(MealApiService::class.java)
     }
+
 
     private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
