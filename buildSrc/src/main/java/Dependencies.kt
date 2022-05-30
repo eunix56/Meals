@@ -18,6 +18,8 @@ object Dependencies {
             "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
         val navigationUiKtx: String =
             "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+        val navigationSafeArgsKtx: String =
+            "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.navigation}"
         val viewModel: String =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycleKtx}"
         val lifecycleRuntime: String =
@@ -56,6 +58,7 @@ object Dependencies {
 
     object Network: Libraries {
         val moshi = "com.squareup.moshi:moshi:${Version.moshi}"
+        val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Version.moshi}"
         val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
         val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Version.retrofit}"
         val okHttp = "com.squareup.okhttp3:okhttp:${Version.okHttp}"
@@ -79,7 +82,7 @@ object Dependencies {
         val daggerHilt = "com.google.dagger:hilt-android:${Version.hilt}"
 
         object AnnotationProcessor {
-            val daggerHilt = "com.google.dagger:hilt-android-compiler:${Version.moshi}"
+            val daggerHilt = "com.google.dagger:hilt-android-compiler:${Version.hilt}"
         }
 
         override val libraries: List<String>
@@ -158,6 +161,7 @@ object Dependencies {
         const val commonView: String = ":common:view"
         const val domain: String = ":libraries:domain"
         const val data: String = ":libraries:data"
+        const val navigation: String = ":libraries:navigation"
         const val remote: String = ":libraries:remote"
         const val recipes: String = ":features:recipes"
         const val ingredients: String = ":features:ingredients"

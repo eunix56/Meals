@@ -41,7 +41,12 @@ dependencies {
     Dependencies.Network.run {
         implementation(moshi)
         implementation(retrofit)
-        kapt(Dependencies.Network.AnnotationProcessor.moshi)
+        annotationProcessor(Dependencies.Network.AnnotationProcessor.moshi)
+    }
+
+    Dependencies.DI.run {
+        implementation(daggerHilt)
+        kapt(Dependencies.DI.AnnotationProcessor.daggerHilt)
     }
 
     Dependencies.Coroutines.run {

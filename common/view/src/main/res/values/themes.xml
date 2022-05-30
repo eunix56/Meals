@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Meals" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/main_colour</item>
+        <item name="colorPrimaryVariant">@color/background_colour</item>
+        <item name="colorOnPrimary">@color/text_colour</item>
+    </style>
+
+
     <style name="HeaderTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/big_text</item>
         <item name="android:lineSpacingExtra">@dimen/big_line_spacing</item>
@@ -18,28 +26,51 @@
         <item name="android:fontFamily">@font/montserrat_bold</item>
     </style>
 
+    <style name="NumberingTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
     <style name="CategoryTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/small_text</item>
         <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/text_colour</item>
+    </style>
+
+    <style name="CategoryMealTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textColor">@color/mini_text_colour</item>
     </style>
 
     <style name="SearchTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:editTextColor">@color/search_text_colour</item>
+        <item name="android:textColorHint">@color/search_text_colour</item>
     </style>
 
     <style name="CardHeaderTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/big_normal_text</item>
-        <item name="android:textColor">@color/main_dark</item>
+        <item name="android:textColor">@color/text_colour</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
     <style name="CardGreyTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/normal_text</item>
-        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textColor">@color/mini_text_colour</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="MealTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/big_header_text</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_line_spacing</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/mini_text_colour</item>
     </style>
 
     <style name="ChipCustomStyle" parent="Widget.MaterialComponents.Chip.Action">

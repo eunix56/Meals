@@ -1,8 +1,6 @@
 package com.example.remote
 
-import com.example.remote.model.CategoryModel
-import com.example.remote.model.IngredientModel
-import com.example.remote.model.MealModel
+import com.example.remote.model.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,25 +13,30 @@ interface MealApiService {
     @GET("search.php")
     suspend fun getSearchedMealRecipes(
         @Query("s") searchValue: String
-    ): List<MealModel>
+    ): MealListModel
 
     @GET("filter.php")
     suspend fun getCategoryMealRecipes(
         @Query("c") category: String
-    ): List<MealModel>
+    ): MealListModel
 
     @GET("filter.php")
     suspend fun getIngredientMeals(
         @Query("i") ingredient: String
-    ): List<MealModel>
+    ): MealListModel
 
     @GET("list.php?c=list")
-    suspend fun getCategories(): List<CategoryModel>
+    suspend fun getCategories(): CategoryMealsModel
 
     @GET("list.php?i=list")
-    suspend fun getIngredients(): List<IngredientModel>
+    suspend fun getIngredients(): IngredientMealsModel
 
     @GET("categories.php")
-    suspend fun getFullCategories(): List<CategoryModel>
+    suspend fun getFullCategories(): CategoryMealsModel
 
+    @GET("lookup.php")
+    suspend fun getMealById(
+        @Query("i") id: String
+    ): SingleMealModel
+    
 }

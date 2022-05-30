@@ -16,6 +16,6 @@ class IngredientRemoteImpl(
 
     override suspend fun fetchIngredients(): List<IngredientEntity> {
         val ingredients = mealApiService.getIngredients()
-        return ingredientModelEntityMapper.mapModelList(ingredients)
+        return ingredientModelEntityMapper.mapModelList(ingredients.meals)
     }
 }

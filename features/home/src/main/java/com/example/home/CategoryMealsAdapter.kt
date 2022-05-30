@@ -8,6 +8,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.domain.model.Meal
 import com.example.home.databinding.ItemCategoryMealBinding
 import java.lang.reflect.Field
@@ -16,7 +21,8 @@ import java.lang.reflect.Field
  * Created by EUNICE BAKARE T. on 20/04/2022
  * Email: eunice@reach.africa
  */
-class CategoryMealsAdapter(private val categoryMeals: List<Meal>):
+class CategoryMealsAdapter(private val categoryMeals: List<Meal>,
+                           private val onClickMeal: ((String) -> Unit)):
     RecyclerView.Adapter<CategoryMealsViewHolder>() {
     private val categoryMealList = arrayListOf(
         Meal("52959","Baked salmon with fennel & tomatoes",
@@ -36,28 +42,30 @@ class CategoryMealsAdapter(private val categoryMeals: List<Meal>):
 
     override fun onBindViewHolder(holder: CategoryMealsViewHolder, position: Int) {
         val categoryMeal = categoryMeals[position]
-        val context = holder.categoryMealBinding.root.context
-        holder.categoryMealBinding.tvMealName.text = categoryMeal.mealName
-        Glide.with(context)
-            .load(getIcon(categoryMeal.mealName, context))
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+        holder.categoryMealBinding.tvMealName.text = categoryMeal.mealName.maxWord(6)
+
+        Glide
+            .with(holder.categoryMealBinding.root)
+            .load(categoryMeal.mealImg)
+            .centerCrop()
+            .placeholder(R.drawable.ic_miscellaneous)
+            .override(480, 600)
+            .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
             .into(holder.categoryMealBinding.ivMealImg)
+        
+        holder.categoryMealBinding.root.setOnClickListener {
+            onClickMeal(categoryMeal.id)
+        }
     }
 
     override fun getItemCount(): Int {
         return categoryMeals.size
     }
 
-    private fun getIcon(mealName: String, context: Context): Drawable? {
-        val drawableFields: Array<Field> = Drawable::class.java.fields
-        var drawable: Drawable? = null
+    private fun String.maxWord(max: Int, postfix: String = ""): String = split(" ").let { words ->
+        if (words.size < max) return@let this
 
-        for (field in drawableFields) {
-            if (field.name.contains(mealName, true))
-                drawable = ContextCompat.getDrawable(context, field.getInt(null))
-        }
-
-        return drawable
+        words.take(max).joinToString(separator = " ", postfix = postfix).trim()
     }
 }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
@@ -14,9 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/welcome_header"
         android:theme="@style/SmallHeaderTextView"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:layout_marginStart="@dimen/normal_spacing"
-        android:textColor="@color/main_dark"
+        android:textColor="@color/text_colour"
         />
 
     <TextView
@@ -28,7 +29,7 @@
         android:text="@string/cook_a_nice_meal_header"
         android:layout_marginTop="@dimen/small_spacing"
         android:theme="@style/HeaderTextView"
-        android:textColor="@color/text_peach"
+        android:textColor="@color/main_colour"
         />
 
     <androidx.appcompat.widget.SearchView
@@ -40,13 +41,14 @@
         app:layout_constraintStart_toStartOf="@id/tv_welcome_question"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/normal_spacing"
         android:background="@drawable/bg_grey_box"
         app:searchIcon="@drawable/ic_search"
+        app:closeIcon="@drawable/ic_close_24"
         app:defaultQueryHint="Search for meals"
         app:iconifiedByDefault="false"
         android:theme="@style/SearchTextView"
-        app:queryBackground="@color/main_grey"
+        app:queryBackground="@color/background_colour"
         />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -96,9 +98,9 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Sushi"
         android:theme="@style/SubHeaderTextView"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="@dimen/normal_spacing"
-        android:textColor="@color/main_dark"
+        android:textColor="@color/text_colour"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -109,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         tools:listitem="@layout/item_category_meal"
         />
 

@@ -1,28 +1,29 @@
 package com.example.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.home.databinding.HomeFragmentBinding
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.domain.model.Category
-import com.example.domain.usecase.FetchCategoryMealsUseCase
+import com.example.home.databinding.HomeFragmentBinding
+import com.example.navigation.NavigationFlow
+import com.example.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), MealCategory {
     private lateinit var homeFragmentBinding: HomeFragmentBinding
-
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
+    
+    @Inject
+    lateinit var navigator: Navigator
 
     //Beef icon by Icons8
     //Breakfast icon by Icons8
@@ -37,10 +38,9 @@ class HomeFragment : Fragment(), MealCategory {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
 
-
-
-        viewModel = ViewModelProvider(this,)[HomeViewModel::class.java]
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -54,8 +54,6 @@ class HomeFragment : Fragment(), MealCategory {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         lifecycleScope.launchWhenStarted {
             viewModel.categoryUIState.collect {
                 homeFragmentBinding.searchBar.visibility = if (it.isLoading) View.GONE else View.VISIBLE
@@ -66,12 +64,13 @@ class HomeFragment : Fragment(), MealCategory {
                 }
 
                 if (it.errorMessage?.isNotBlank() == true) {
-                    homeFragmentBinding.searchBar.visibility = View.GONE
-
+                    homeFragmentBinding.searchBar.isEnabled = false
+                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
+        }
 
-
+        lifecycleScope.launchWhenStarted {
             viewModel.categoryMealsUIState.collect {
                 homeFragmentBinding.lavLoader.visibility = if (it.isLoading) View.VISIBLE else View.GONE
                 homeFragmentBinding.tvCategoryHeader.visibility = if (it.isLoading) View.GONE else View.VISIBLE
@@ -79,13 +78,14 @@ class HomeFragment : Fragment(), MealCategory {
                 homeFragmentBinding.tvCategoryHeader.text = it.category
 
                 if (it.meals.isNotEmpty()) {
-                    val categoryMealsAdapter = CategoryMealsAdapter(it.meals)
+                    val categoryMealsAdapter = CategoryMealsAdapter(it.meals) { id ->
+                        navigator.navigateToDetailsFlow(NavigationFlow.RecipeDetailsFlow, id)
+                    }
                     homeFragmentBinding.rvCategoryMeals.adapter = categoryMealsAdapter
                 }
 
                 if (it.errorMessage?.isNotBlank() == true) {
-                    homeFragmentBinding.tvCategoryHeader.visibility = View.GONE
-
+                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }

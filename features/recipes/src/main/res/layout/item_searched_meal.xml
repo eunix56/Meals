@@ -62,7 +62,6 @@
             android:layout_marginTop="@dimen/small_spacing"
             android:theme="@style/CardGreyTextView"
             tools:text="Beef"
-            android:textColor="@color/main_dark"
             />
 
         <TextView
@@ -74,7 +73,6 @@
             android:layout_marginTop="@dimen/small_spacing"
             android:theme="@style/CardGreyTextView"
             tools:text="Beef"
-            android:textColor="@color/main_dark"
             />
 
 

@@ -1,14 +1,10 @@
 package com.example.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
 /**
  * Created by EUNICE BAKARE T. on 11/03/2022
  * Email: eunice@reach.africa
  */
 
-@Parcelize
 data class Meal(
     val id: String,
     val mealName: String,
@@ -61,4 +57,4 @@ data class Meal(
     val measureTwenty: String?="",
     val mealSource: String?="",
     val mealImgSource: String?=""
-): Parcelable
+)

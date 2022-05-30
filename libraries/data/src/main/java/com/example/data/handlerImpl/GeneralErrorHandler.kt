@@ -14,7 +14,7 @@ import java.net.HttpURLConnection
 //https://proandroiddev.com/android-error-handling-in-clean-architecture-844a7fc0dc03
 class GeneralErrorHandler: ErrorHandler {
 
-    override fun getError(throwable: Throwable): ErrorResult {
+    override fun getError(throwable: Throwable?): ErrorResult {
         return when(throwable) {
             is IOException -> ErrorResult.Network
             is HttpException -> {

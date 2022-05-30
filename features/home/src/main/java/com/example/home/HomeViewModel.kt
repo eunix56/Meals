@@ -8,14 +8,17 @@ import com.example.domain.model.Meal
 import com.example.domain.usecase.FetchCategoriesUseCase
 import com.example.domain.usecase.FetchCategoryMealsUseCase
 import com.example.view.getErrorResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val categoryMealsUseCase: FetchCategoryMealsUseCase,
     private val categoriesUseCase: FetchCategoriesUseCase
 ) : ViewModel() {
-    // TODO: Implement the ViewModel
+    
     private val _categoryUIState = MutableStateFlow(CategoryUIState(isLoading = true))
     val categoryUIState: StateFlow<CategoryUIState> = _categoryUIState
 

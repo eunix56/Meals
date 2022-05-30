@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_graph">
+
+    <include app:graph="@navigation/home_graph" />
+
+    <include app:graph="@navigation/recipes_graph" />
+
+    <action
+        android:id="@+id/actionGlobalHomeFlow"
+        app:destination="@id/home_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/nav_graph"/>
+
+    <action
+        android:id="@+id/actionGlobalRecipesFlow"
+        app:destination="@id/recipes_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/nav_graph"/>
+
+    <action
+        android:id="@+id/actionRecipeDetailsFlow"
+        app:destination="@id/recipe_details_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/nav_graph">
+        <argument
+            android:name="mealId"
+            app:argType="string"
+            app:nullable="true" />
+    </action>
+</navigation>

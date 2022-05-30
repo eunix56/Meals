@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/small_spacing"
             android:theme="@style/CardGreyTextView"
             tools:text="Beef"
-            android:textColor="@color/main_dark"
+            android:textColor="@color/text_colour"
             />
 
         <androidx.recyclerview.widget.RecyclerView

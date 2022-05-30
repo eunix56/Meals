@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -43,6 +44,12 @@ dependencies {
         implementation(retrofitMoshi)
         implementation(okHttp)
         implementation(okHttpLoggingInterceptor)
+        implementation(moshiKotlin)
+    }
+
+    Dependencies.DI.run {
+        implementation(daggerHilt)
+        kapt(Dependencies.DI.AnnotationProcessor.daggerHilt)
     }
 
     Dependencies.UnitTesting.run {

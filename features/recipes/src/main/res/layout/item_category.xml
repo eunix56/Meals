@@ -43,7 +43,6 @@
         android:theme="@style/CategoryTextView"
         android:layout_marginTop="@dimen/very_small_spacing"
         tools:text="Sushi"
-        android:textColor="@color/main_dark"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

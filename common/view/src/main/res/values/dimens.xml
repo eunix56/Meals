@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="big_text">24sp</dimen>
+    <dimen name="big_header_text">21sp</dimen>
     <dimen name="big_line_spacing">6sp</dimen>
     <dimen name="very_small_text">11sp</dimen>
     <dimen name="normal_text">14sp</dimen>
     <dimen name="normal_line_spacing">4sp</dimen>
     <dimen name="small_text">12sp</dimen>
     <dimen name="small_big_text">18sp</dimen>
+    <dimen name="sub_header_size">20sp</dimen>
     <dimen name="big_normal_text">16sp</dimen>
+
+    <dimen name="very_large_spacing">20dp</dimen>
     <dimen name="large_spacing">16dp</dimen>
     <dimen name="normal_spacing">12dp</dimen>
     <dimen name="small_spacing">8dp</dimen>

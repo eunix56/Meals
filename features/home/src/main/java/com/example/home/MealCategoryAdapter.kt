@@ -1,5 +1,7 @@
 package com.example.home
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.domain.model.Category
 import com.example.home.databinding.ItemCategoryBinding
+import java.lang.reflect.Field
 import java.util.zip.Inflater
 
 /**
@@ -39,7 +42,7 @@ class MealCategoryAdapter(private val categories: List<Category>,
         val category = categories[position]
 
         Glide.with(holder.binding.root.context)
-            .load(category.categoryImg)
+            .load(getIcon(category.categoryName, holder.binding.root.context))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.binding.ivCategoryImg)
 
@@ -55,6 +58,18 @@ class MealCategoryAdapter(private val categories: List<Category>,
             listener.selectCategory(categories[checkedPosition])
         }
 
+    }
+
+    private fun getIcon(mealName: String, context: Context): Drawable? {
+        val drawableFields: Array<Field> = R.drawable::class.java.fields
+        var drawable: Drawable? = null
+
+        for (field in drawableFields) {
+            if (field.name.contains(mealName, true))
+                drawable = ContextCompat.getDrawable(context, field.getInt(null))
+        }
+
+        return drawable
     }
 
     override fun getItemCount(): Int {

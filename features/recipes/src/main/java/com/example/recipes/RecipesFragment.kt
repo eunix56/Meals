@@ -13,6 +13,8 @@ class RecipesFragment : Fragment() {
         fun newInstance() = RecipesFragment()
     }
 
+    //The idea is to use this for the search activity and the home activity for the categories
+
     private lateinit var viewModel: RecipesViewModel
 
     override fun onCreateView(
@@ -22,10 +24,5 @@ class RecipesFragment : Fragment() {
         return inflater.inflate(R.layout.recipes_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RecipesViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

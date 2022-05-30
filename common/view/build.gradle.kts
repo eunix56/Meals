@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
 }
 
 android {
@@ -41,6 +40,7 @@ android {
 
 dependencies {
     api(project(Dependencies.ProjectLib.domain))
+    api(project(Dependencies.ProjectLib.navigation))
 
     Dependencies.View.run {
         implementation(appCompat)
@@ -49,11 +49,6 @@ dependencies {
         api(lottie)
         api(glide)
         annotationProcessor(Dependencies.View.AnnotationProcessor.glide)
-    }
-
-    Dependencies.AndroidX.run {
-        implementation(Dependencies.AndroidX.navigationUiKtx)
-        implementation(Dependencies.AndroidX.navigationFragmentKtx)
     }
 
     Dependencies.UnitTesting.run {

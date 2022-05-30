@@ -15,7 +15,7 @@
         android:theme="@style/ChipCustomStyle"
         style="@style/ChipCustomStyle"
         tools:text="Hungry"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/mini_text_colour"
         android:background="@drawable/bg_meal_card"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

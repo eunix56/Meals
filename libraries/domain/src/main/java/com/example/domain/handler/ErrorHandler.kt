@@ -8,5 +8,5 @@ package com.example.domain.handler
 //Gotten from https://proandroiddev.com/android-error-handling-in-clean-architecture-844a7fc0dc03
 interface ErrorHandler {
 
-    fun getError(throwable: Throwable): ErrorResult
+    fun getError(throwable: Throwable?): ErrorResult
 }

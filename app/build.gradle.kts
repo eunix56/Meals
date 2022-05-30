@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -28,13 +28,13 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     @Suppress("UnstableApiUsage")
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     viewBinding {
@@ -45,6 +45,9 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(Dependencies.ProjectLib.domain))
+    implementation(project(Dependencies.ProjectLib.remote))
+    implementation(project(Dependencies.ProjectLib.data))
+    implementation(project(Dependencies.ProjectLib.navigation))
     implementation(project(Dependencies.ProjectLib.home))
     implementation(project(Dependencies.ProjectLib.recipes))
     implementation(project(Dependencies.ProjectLib.favourites))

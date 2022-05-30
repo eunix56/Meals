@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -38,6 +38,11 @@ android {
 dependencies {
    Dependencies.Coroutines.run {
         implementation(android)
+    }
+
+    Dependencies.DI.run {
+        implementation(daggerHilt)
+        kapt(Dependencies.DI.AnnotationProcessor.daggerHilt)
     }
 
     Dependencies.UnitTesting.run {

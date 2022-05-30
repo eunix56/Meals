@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/small_spacing"
+    android:layout_marginTop="@dimen/normal_spacing"
+    android:paddingEnd="@dimen/large_spacing"
+    android:background="@drawable/bg_ingredient_card"
+    android:layout_marginStart="@dimen/large_spacing"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_ingredient_img"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:layout_marginBottom="@dimen/small_spacing"
+        android:layout_marginStart="@dimen/large_spacing"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_empty_screen"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_ingredient_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_ingredient_img"
+        app:layout_constraintStart_toStartOf="@id/iv_ingredient_img"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:textAlignment="center"
+        android:theme="@style/CategoryMealTextView"
+        tools:text="Eggs"
+        />
+
+    <TextView
+        android:id="@+id/tv_ingredient_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_ingredient_name"
+        app:layout_constraintStart_toStartOf="@id/iv_ingredient_img"
+        android:textAlignment="center"
+        android:theme="@style/CardGreyTextView"
+        android:textColor="@color/grey_text_colour"
+        android:layout_marginTop="@dimen/very_small_spacing"
+        tools:text="2 pcs"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
