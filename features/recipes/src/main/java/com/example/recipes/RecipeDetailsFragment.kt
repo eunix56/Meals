@@ -7,28 +7,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.navigation.NavigationFlow
 import com.example.recipes.databinding.RecipeDetailsFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class RecipeDetailsFragment : Fragment() {
     
     private val recipeDetailsFragmentArgs by navArgs<RecipeDetailsFragmentArgs>()
     private lateinit var recipeDetailsBinding: RecipeDetailsFragmentBinding
+    private lateinit var mealDetailsAdapter: MealDetailsAdapter
 
     companion object {
         fun newInstance() = RecipeDetailsFragment()
     }
 
-    private lateinit var viewModel: RecipeDetailsViewModel
+    private val viewModel by viewModels<RecipeDetailsViewModel>()
     
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    
-        viewModel = ViewModelProvider(this)[RecipeDetailsViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +51,16 @@ class RecipeDetailsFragment : Fragment() {
         
         lifecycleScope.launchWhenStarted {
             viewModel.mealUIState.collect {
+                
                 if (it.meal != null) {
-                    val mealDetailsAdapter = MealDetailsAdapter(it.meal)
+                    Glide
+                        .with(this@RecipeDetailsFragment)
+                        .load(it.meal.mealImg)
+                        .placeholder(R.drawable.ic_empty_screen)
+                        .into(recipeDetailsBinding.ivMealImage)
+                    
+                    mealDetailsAdapter = MealDetailsAdapter(it.meal)
+                    setupLayoutManager()
                     recipeDetailsBinding.rvIngredients.adapter = mealDetailsAdapter
                 }
     
@@ -57,6 +69,21 @@ class RecipeDetailsFragment : Fragment() {
                 }
             }
         }
+    }
+    
+    private fun setupLayoutManager() {
+        val gridManager = GridLayoutManager(context, 3)
+        gridManager.orientation = GridLayoutManager.VERTICAL
+        gridManager.spanSizeLookup  = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+    
+                return when (mealDetailsAdapter.getItemViewType(position)){
+                    INGREDIENTS -> 1
+                    else -> 3
+                }
+            }
+        }
+        recipeDetailsBinding.rvIngredients.layoutManager = gridManager
     }
 
     

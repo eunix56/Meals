@@ -5,12 +5,14 @@ import com.example.domain.handler.DataResult
 import com.example.domain.model.Meal
 import com.example.domain.usecase.FetchMealByIdUseCase
 import com.example.view.getErrorResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
+@HiltViewModel
 class RecipeDetailsViewModel @Inject constructor(
     private val mealByIdUseCase: FetchMealByIdUseCase
 ): ViewModel() {

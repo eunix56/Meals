@@ -10,7 +10,7 @@
         android:id="@+id/fl_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_category_box"
+        android:background="@drawable/bg_grey_box"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

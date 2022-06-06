@@ -1,8 +1,13 @@
 package com.example.recipes
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.domain.model.Category
 import com.example.domain.model.Meal
 import com.example.recipes.databinding.ItemIngredientBinding
@@ -21,6 +26,10 @@ class MealDetailsAdapter(private val recipe: Meal) :
     private var ingredients: List<Ingredient> = emptyList()
     private var instructions: List<Instruction> = emptyList()
     
+    init {
+        setIngredientAndInstruction()
+    }
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when(viewType) {
@@ -32,8 +41,6 @@ class MealDetailsAdapter(private val recipe: Meal) :
     
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemType = getItemViewType(position)
-        val ingredient = ingredients[position]
-        val instruction = instructions[position]
         
         when (itemType) {
             TITLE -> if (holder is MealTitleViewHolder) {
@@ -43,13 +50,19 @@ class MealDetailsAdapter(private val recipe: Meal) :
                 }
             }
             INGREDIENTS -> if (holder is MealIngredientsViewHolder) {
+                val ingredient = ingredients[position - 1]
+                Glide.with(holder.ingredientBinding.root.context)
+                    .load("www.themealdb.com/images/ingredients/${ingredient.ingredient}.png")
+                    .placeholder(R.drawable.ic_empty_screen)
+                    .into(holder.ingredientBinding.ivIngredientImg)
                 holder.ingredientBinding.tvIngredientName.text = ingredient.ingredient
                 holder.ingredientBinding.tvIngredientMeasure.text = ingredient.measure
             }
             else -> if (holder is MealInstructionsViewHolder) {
+                val instruction = instructions[position - 1]
                 holder.instructionsBinding.tvInstruction.text = instruction.instruction
                 holder.instructionsBinding.tvInstructionsNum.text =
-                    holder.instructionsBinding.root.context.getString(R.string.instructions_num, (position + 1).toString())
+                    holder.instructionsBinding.root.context.getString(R.string.instructions_num, (position).toString())
             }
         }
     }
@@ -71,13 +84,12 @@ class MealDetailsAdapter(private val recipe: Meal) :
     private fun setIsIngredient(showIngredient: Boolean) {
         isIngredient = showIngredient
         
-        if (showIngredient) {
-            ingredients = convertMealsToIngredients(recipe)
-            notifyItemInserted(2)
-        } else {
-            instructions = convertMealToInstructions(recipe)
-            notifyItemInserted(2)
-        }
+        notifyItemInserted(1)
+    }
+    
+    private fun setIngredientAndInstruction() {
+        ingredients = convertMealsToIngredients(recipe)
+        instructions = convertMealToInstructions(recipe)
     }
 }
 
@@ -85,21 +97,39 @@ class MealDetailsAdapter(private val recipe: Meal) :
 class MealTitleViewHolder(val titleBinding: ItemMealTitleBinding):
         RecyclerView.ViewHolder(titleBinding.root) {
     private var isIngredient = true
-    
+    val context: Context = titleBinding.root.context
     fun setIngredient(onItemClick: (Boolean) -> Unit) {
+        
         titleBinding.tvIngredients.setOnClickListener {
             if (isIngredient)
                 return@setOnClickListener
-                
-            else isIngredient = true
+            else {
+                isIngredient = true
+                titleBinding.tvIngredients.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_left_selected)
+                titleBinding.tvInstructions.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_right)
+                titleBinding.tvIngredients.setTextColor(
+                    ContextCompat.getColor(context, R.color.search_text_colour))
+                titleBinding.tvInstructions.setTextColor(
+                    ContextCompat.getColor(context, R.color.light_text_colour))
+            }
             
             onItemClick(isIngredient)
         }
         
         titleBinding.tvInstructions.setOnClickListener {
-            if (isIngredient)
+            if (isIngredient) {
                 isIngredient = false
-            else
+                titleBinding.tvInstructions.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_right_selected)
+                titleBinding.tvInstructions.setTextColor(
+                    ContextCompat.getColor(context, R.color.search_text_colour))
+                titleBinding.tvIngredients.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_left)
+                titleBinding.tvIngredients.setTextColor(
+                    ContextCompat.getColor(context, R.color.light_text_colour))
+            } else
                 return@setOnClickListener
             
             onItemClick(isIngredient)
