@@ -3,4 +3,5 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="instructions_num">%1$s</string>
+    <string name="meal_of_the_day">Meal of the day</string>
 </resources>

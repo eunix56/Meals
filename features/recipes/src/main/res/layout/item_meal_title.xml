@@ -30,37 +30,73 @@
         />
 
     <TextView
+        android:id="@+id/tv_meal_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
+        android:layout_marginStart="@dimen/large_spacing"
+        android:theme="@style/CategoryTextView"
+        android:layout_marginTop="4dp"
+        tools:text="Italy"
+        android:paddingStart="@dimen/small_spacing"
+        android:paddingEnd="@dimen/small_spacing"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/bg_grey_box"
+        android:textColor="@color/mini_text_colour"
+        />
+
+    <TextView
+        android:id="@+id/tv_meal_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/tv_meal_area"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
+        android:layout_marginStart="@dimen/large_spacing"
+        android:theme="@style/CategoryTextView"
+        tools:text="Vegetarian"
+        android:paddingStart="@dimen/small_spacing"
+        android:paddingEnd="@dimen/small_spacing"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/bg_grey_box"
+        android:textColor="@color/mini_text_colour"
+        />
+
+    <TextView
         android:id="@+id/tv_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_category"
         app:layout_constraintEnd_toEndOf="@id/gl_line_layout"
         android:theme="@style/RegularHeaderTextView"
-        android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
         android:text="@string/ingredients"
         android:paddingStart="@dimen/large_spacing"
         android:paddingEnd="@dimen/large_spacing"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:background="@drawable/bg_left_selected"
-        android:textColor="@color/search_text_colour"
+        android:textColor="@color/mini_text_colour"
         />
 
     <TextView
         android:id="@+id/tv_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_category"
         app:layout_constraintStart_toStartOf="@id/gl_line_layout"
         android:theme="@style/RegularHeaderTextView"
-        android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
         android:text="@string/instructions"
         android:paddingStart="@dimen/large_spacing"
         android:paddingEnd="@dimen/large_spacing"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:background="@drawable/bg_right"
-        android:textColor="@color/light_text_colour"
+        android:textColor="@color/selector_text_colour"
         />
 
 

@@ -16,23 +16,18 @@
         tools:src="@drawable/ic_empty_screen"
         />
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="@dimen/normal_spacing"
-        android:layout_marginTop="@dimen/small_spacing"
-        android:background="@drawable/bg_bookmark">
-
     <ImageButton
         android:id="@+id/ib_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_bookmark"
+        android:padding="@dimen/small_spacing"
+        android:background="@drawable/bg_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_image_layout"

@@ -10,6 +10,12 @@
         android:icon="@drawable/ic_recipes_24"
         />
 
+    <item android:id="@+id/ingredientsFragment"
+        android:title="@string/ingredients"
+        android:icon="@drawable/ic_ingredients_24"
+        />
+
+
     <item android:id="@+id/favouriteFragment"
         android:title="@string/favourites"
         android:icon="@drawable/ic_favourite_24"
