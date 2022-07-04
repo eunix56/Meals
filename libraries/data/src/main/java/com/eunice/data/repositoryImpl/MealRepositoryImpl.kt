@@ -68,5 +68,17 @@ class MealRepositoryImpl @Inject constructor(
             emit(result)
         }
     }
+    
+    override suspend fun fetchRandomMeal(): Flow<DataResult<Meal>> {
+        var result: DataResult<Meal>
+        return flow {
+            val meal = mealRemote.fetchRandomMeal()
+            result = DataResult.Success(mealEntityModelMapper.mapFromEntity(meal))
+            emit(result)
+        }.catch {
+            result = DataResult.Error(errorHandler.getError(it))
+            emit(result)
+        }
+    }
 
 }

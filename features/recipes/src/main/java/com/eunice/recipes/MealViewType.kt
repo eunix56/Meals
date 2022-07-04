@@ -18,3 +18,15 @@ annotation class MealViewType
     const val TITLE = 0
     const val INGREDIENTS = 1
     const val INSTRUCTIONS = 2
+
+
+@Target(
+    AnnotationTarget.VALUE_PARAMETER,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.EXPRESSION
+)
+@Retention(AnnotationRetention.SOURCE)
+@IntDef(HEADER, RESULTS)
+annotation class SearchViewType
+const val HEADER = 0
+const val RESULTS = 1

@@ -47,5 +47,9 @@ object UseCaseModule {
     fun fetchMealById(mealRepository: MealRepository)
             : FetchMealByIdUseCase = FetchMealByIdUseCase(mealRepository)
     
+    @[Provides Singleton]
+    fun fetchRandomMeal(mealRepository: MealRepository)
+            : FetchRandomMealUseCase = FetchRandomMealUseCase(mealRepository)
+    
     
 }

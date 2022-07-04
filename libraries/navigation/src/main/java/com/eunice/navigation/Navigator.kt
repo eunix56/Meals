@@ -14,12 +14,13 @@ class Navigator @Inject constructor() {
     
     fun navigateToGlobalFlow(globalNavigationFlow: GlobalNavigationFlow) = when(globalNavigationFlow) {
         GlobalNavigationFlow.HomeFlow -> navController.navigate(NavGraphDirections.actionGlobalHomeFlow())
-        GlobalNavigationFlow.RecipeFlow -> navController.navigate(NavGraphDirections.actionGlobalRecipesFlow())
+        GlobalNavigationFlow.RecipeFlow -> navController.navigate(NavGraphDirections.actionGlobalRecipesFlow(null))
     }
     
-    fun navigateToDetailsFlow(navigationFlow: NavigationFlow, id: String) {
-        if (navigationFlow == NavigationFlow.RecipeDetailsFlow) {
+    fun navigateToSearchResultsFlow(searchQuery: String) =
+        navController.navigate(NavGraphDirections.actionGlobalRecipesFlow(searchQuery))
+    
+    fun navigateToRecipesDetailsFlow(id: String) =
             navController.navigate(NavGraphDirections.actionRecipeDetailsFlow(id))
-        }
-    }
+    
 }

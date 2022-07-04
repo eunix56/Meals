@@ -13,9 +13,10 @@
     <color name="card_background">#F87E6B</color>
     <color name="num_background">#F88A79</color>
     <color name="grey_text_colour">#A6A6A6</color>
-    <color name="selector_bg_colour">#F87E6B</color>
+    <color name="selector_bg_colour">#DADADA</color>
     <color name="selector_text_colour">#2D2D2D</color>
     <color name="ingredient_bg_colour">#E1E1E1</color>
+    <color name="small_card_background">#A6A6A6</color>
 
     <color name="main_peach">#F76E58</color>
     <color name="text_peach">#ec6752</color>

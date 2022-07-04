@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.eunice.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import meals.R
@@ -33,5 +34,6 @@ class MealsActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         
         navigator.navController = navController
+        activityMealsBinding.bnvMeals.setupWithNavController(navController)
     }
 }

@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.eunice.domain.model.Category
 import com.eunice.home.databinding.HomeFragmentBinding
-import com.eunice.navigation.NavigationFlow
 import com.eunice.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -53,41 +53,78 @@ class HomeFragment : Fragment(), MealCategory {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupSearchUI()
         lifecycleScope.launchWhenStarted {
             viewModel.categoryUIState.collect {
-                homeFragmentBinding.searchBar.visibility = if (it.isLoading) View.GONE else View.VISIBLE
-
-                if (it.categories.isNotEmpty()) {
-                    val categoryAdapter = MealCategoryAdapter(it.categories, this@HomeFragment)
-                    homeFragmentBinding.rvCategory.adapter = categoryAdapter
-                }
-
-                if (it.errorMessage?.isNotBlank() == true) {
-                    homeFragmentBinding.searchBar.isEnabled = false
-                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                setupCategory(it)
             }
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.categoryMealsUIState.collect {
-                homeFragmentBinding.lavLoader.visibility = if (it.isLoading) View.VISIBLE else View.GONE
-                homeFragmentBinding.tvCategoryHeader.visibility = if (it.isLoading) View.GONE else View.VISIBLE
-
-                homeFragmentBinding.tvCategoryHeader.text = it.category
-
-                if (it.meals.isNotEmpty()) {
-                    val categoryMealsAdapter = CategoryMealsAdapter(it.meals) { id ->
-                        navigator.navigateToDetailsFlow(NavigationFlow.RecipeDetailsFlow, id)
-                    }
-                    homeFragmentBinding.rvCategoryMeals.adapter = categoryMealsAdapter
-                }
-
-                if (it.errorMessage?.isNotBlank() == true) {
-                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                setupCategoryMeals(it)
             }
         }
+    }
+    
+    private fun setupCategory(uiState
+                              : HomeViewModel.CategoryUIState) {
+        homeFragmentBinding.searchBar.visibility = if (uiState.isLoading)
+            View.GONE else View.VISIBLE
+    
+        if (uiState.categories.isNotEmpty()) {
+            val categoryAdapter = MealCategoryAdapter(uiState.categories,
+                this@HomeFragment)
+            
+            homeFragmentBinding.rvCategory.adapter = categoryAdapter
+        }
+    
+        if (uiState.errorMessage?.isNotBlank() == true) {
+            homeFragmentBinding.searchBar.isEnabled = false
+            Toast.makeText(context, uiState.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+    
+    private fun setupCategoryMeals(mealsUIState
+                                   : HomeViewModel.CategoryMealsUIState) {
+        homeFragmentBinding.lavLoader.visibility = if (mealsUIState.isLoading)
+            View.VISIBLE else View.GONE
+        
+        homeFragmentBinding.tvCategoryHeader.visibility = if (mealsUIState.isLoading)
+            View.GONE else View.VISIBLE
+    
+        homeFragmentBinding.tvCategoryHeader.text = mealsUIState.category
+    
+        if (mealsUIState.meals.isNotEmpty()) {
+            val categoryMealsAdapter = CategoryMealsAdapter(mealsUIState.meals) { id ->
+                navigator.navigateToRecipesDetailsFlow(id)
+            }
+            homeFragmentBinding.rvCategoryMeals.adapter = categoryMealsAdapter
+        }
+    
+        if (mealsUIState.errorMessage?.isNotBlank() == true) {
+            Toast.makeText(context, mealsUIState.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+    
+    private fun setupSearchUI() {
+        homeFragmentBinding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return if (p0.isNullOrEmpty() || p0.isNullOrBlank())
+                    false
+                else {
+                    navigator.navigateToSearchResultsFlow(p0.trim())
+                    true
+                }
+            }
+    
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+    
+        })
     }
 
     override fun selectCategory(category: Category) {

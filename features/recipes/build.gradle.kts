@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(Dependencies.ProjectLib.commonView))
+    implementation(project(Dependencies.ProjectLib.commonUtils))
 
     Dependencies.View.run {
         implementation(appCompat)

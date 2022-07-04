@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_grey"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_meal_of_the_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/recipes_search_bar"
+        app:layout_constraintBottom_toBottomOf="@id/recipes_search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:text="@string/meal_of_the_day"
+        android:theme="@style/HeaderTextView"
+        android:textColor="@color/main_colour"
+        />
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/recipes_search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/very_large_spacing"
+        app:searchIcon="@drawable/ic_search"
+        app:closeIcon="@drawable/ic_close_24"
+        android:layout_marginStart="@dimen/normal_spacing"
+        app:defaultQueryHint="Search for meals"
+        app:iconifiedByDefault="true"
+        android:theme="@style/SearchTextView"
+        android:backgroundTint="@color/background_colour"
+        app:queryBackground="@color/background_colour"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cl_meal_of_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginBottom="@dimen/large_spacing"
+        app:cardCornerRadius="@dimen/normal_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        app:layout_constraintTop_toBottomOf="@id/tv_meal_of_the_day">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_meal_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:adjustViewBounds="true"
+                tools:src="@drawable/images"
+                />
+
+
+            <ImageButton
+                android:id="@+id/ib_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bookmark"
+                android:padding="@dimen/small_spacing"
+                android:background="@drawable/bg_bookmark"
+                app:layout_constraintEnd_toEndOf="@id/iv_meal_img"
+                app:layout_constraintTop_toTopOf="@id/iv_meal_img"
+                android:layout_marginEnd="@dimen/normal_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+            <View
+                android:id="@+id/view_bg_text"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_card_box"
+                app:layout_constraintBottom_toBottomOf="@id/iv_meal_img"
+                app:layout_constraintStart_toStartOf="@id/iv_meal_img"
+                app:layout_constraintEnd_toEndOf="@id/iv_meal_img"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_meal_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/view_bg_text"
+                android:layout_marginTop="@dimen/normal_spacing"
+                android:layout_marginStart="@dimen/normal_spacing"
+                android:theme="@style/CategoryMealTextView"
+                tools:text="Beef Indomie"
+                android:textSize="18sp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_meal_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tv_meal_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_meal_name"
+                android:theme="@style/CategoryTextView"
+                android:layout_marginTop="4dp"
+                tools:text="Italy"
+                android:paddingStart="@dimen/small_spacing"
+                android:paddingEnd="@dimen/small_spacing"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/bg_grey_box"
+                android:textColor="@color/mini_text_colour"
+                />
+
+            <TextView
+                android:id="@+id/tv_meal_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@id/tv_meal_area"
+                app:layout_constraintTop_toBottomOf="@id/tv_meal_name"
+                android:layout_marginStart="@dimen/large_spacing"
+                android:theme="@style/CategoryTextView"
+                tools:text="Vegetarian"
+                android:paddingStart="@dimen/small_spacing"
+                android:paddingEnd="@dimen/small_spacing"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/bg_grey_box"
+                android:textColor="@color/mini_text_colour"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_category_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_meal_of_day"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/categories"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:theme="@style/SubHeaderTextView"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:textColor="@color/text_colour"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_full_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_category_header"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_full_category"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

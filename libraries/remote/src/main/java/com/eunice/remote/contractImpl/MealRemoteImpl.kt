@@ -28,11 +28,15 @@ class MealRemoteImpl @Inject constructor(
     override suspend fun fetchIngredientMeals(ingredientName: String): List<MealEntity> {
         val ingredients = mealApiService.getIngredientMeals(ingredientName)
         return mealModelEntityMapper.mapModelList(ingredients.meals)
-
     }
     
     override suspend fun fetchMealById(id: String): MealEntity {
         val meal = mealApiService.getMealById(id)
-        return mealModelEntityMapper.mapFromModel(meal.meals[0])
+        return mealModelEntityMapper.mapFromModel(meal.meals.first())
+    }
+    
+    override suspend fun fetchRandomMeal(): MealEntity {
+        val meal = mealApiService.getRandomMeal()
+        return mealModelEntityMapper.mapFromModel(meal.meals.first())
     }
 }

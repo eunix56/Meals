@@ -14,4 +14,6 @@ interface MealRemote {
     suspend fun fetchIngredientMeals(ingredientName: String): List<MealEntity>
     
     suspend fun fetchMealById(id: String): MealEntity
+    
+    suspend fun fetchRandomMeal(): MealEntity
 }

@@ -32,11 +32,14 @@ interface MealApiService {
     suspend fun getIngredients(): IngredientMealsModel
 
     @GET("categories.php")
-    suspend fun getFullCategories(): CategoryMealsModel
+    suspend fun getFullCategories(): FullCategoryModel
 
     @GET("lookup.php")
     suspend fun getMealById(
         @Query("i") id: String
     ): MealListModel
+    
+    @GET("random.php")
+    suspend fun getRandomMeal(): MealListModel
     
 }

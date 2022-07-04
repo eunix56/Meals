@@ -17,4 +17,6 @@ interface MealRepository {
     suspend fun fetchIngredientMeals(ingredient: String): Flow<DataResult<List<Meal>>>
     
     suspend fun fetchMealById(id: String): Flow<DataResult<Meal>>
+    
+    suspend fun fetchRandomMeal(): Flow<DataResult<Meal>>
 }

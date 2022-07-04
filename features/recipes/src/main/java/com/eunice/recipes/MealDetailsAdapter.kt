@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -21,7 +22,7 @@ import com.eunice.recipes.databinding.ItemMealTitleBinding
 class MealDetailsAdapter(private val recipe: Meal) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var isIngredient = true
-    private var ingredients: List<Ingredient> = emptyList()
+    private var ingredientData: List<IngredientData> = emptyList()
     private var instructions: List<Instruction> = emptyList()
     
     init {
@@ -38,7 +39,6 @@ class MealDetailsAdapter(private val recipe: Meal) :
     }
     
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    
         when (getItemViewType(position)) {
             TITLE -> if (holder is MealTitleViewHolder) {
                 holder.titleBinding.tvMealTitle.text = recipe.mealName
@@ -49,7 +49,7 @@ class MealDetailsAdapter(private val recipe: Meal) :
                 }
             }
             INGREDIENTS -> if (holder is MealIngredientsViewHolder) {
-                val ingredient = ingredients[position - 1]
+                val ingredient = ingredientData[position - 1]
                 
                 Glide.with(holder.ingredientBinding.root.context)
                     .load("https://www.themealdb.com/images/ingredients/${ingredient.ingredient}.png")
@@ -62,22 +62,18 @@ class MealDetailsAdapter(private val recipe: Meal) :
                 holder.ingredientBinding.tvIngredientMeasure.text = ingredient.measure
             }
             else -> if (holder is MealInstructionsViewHolder) {
-                val pos = position - 1
-                val instruction = instructions[pos]
-                holder.instructionsBinding.tvInstruction.text = instruction.instruction
+                val instruction = instructions[position - 1]
                 
-                if (pos + 1 > instructions.size)
-                    return
-                else
-                    holder.instructionsBinding.tvInstructionsNum.text =
-                        holder.instructionsBinding.root.context.getString(R.string.instructions_num, ((pos + 1).toString()))
+                holder.instructionsBinding.tvInstruction.text = instruction.instruction
+                holder.instructionsBinding.tvInstructionsNum.text =
+                        holder.instructionsBinding.root.context.getString(R.string.instructions_num, ((position).toString()))
             }
         }
     }
     
     override fun getItemCount(): Int {
         return if (isIngredient)
-            ingredients.size + 1
+            ingredientData.size + 1
         else
             instructions.size + 1
     }
@@ -90,13 +86,20 @@ class MealDetailsAdapter(private val recipe: Meal) :
         }
     }
     private fun setIsIngredient(showIngredient: Boolean) {
+        if (showIngredient) {
+            notifyItemRangeRemoved(1, instructions.size)
+            notifyItemRangeInserted(1, ingredientData.size)
+        }
+        else {
+            notifyItemRangeRemoved(1, ingredientData.size)
+            notifyItemRangeInserted(1, instructions.size)
+        }
+    
         isIngredient = showIngredient
-        
-        notifyItemInserted(1)
     }
     
     private fun setIngredientAndInstruction() {
-        ingredients = convertMealsToIngredients(recipe)
+        ingredientData = convertMealToIngredients(recipe)
         instructions = convertMealToInstructions(recipe)
     }
 }
@@ -106,6 +109,7 @@ class MealTitleViewHolder(val titleBinding: ItemMealTitleBinding):
         RecyclerView.ViewHolder(titleBinding.root) {
     private var isIngredient = true
     val context: Context = titleBinding.root.context
+    
     fun setIngredient(onItemClick: (Boolean) -> Unit) {
         
         titleBinding.tvIngredients.setOnClickListener {
@@ -151,3 +155,51 @@ class MealIngredientsViewHolder(val ingredientBinding: ItemIngredientBinding):
 class MealInstructionsViewHolder(val instructionsBinding: ItemInstructionsBinding):
         RecyclerView.ViewHolder(instructionsBinding.root)
 
+
+class IngredientsDiffUtils(private val oldList: List<IngredientData>,
+                           private val newList: List<IngredientData>):
+    DiffUtil.Callback() {
+    
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+    
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+    
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].ingredient == newList[newItemPosition].ingredient
+    }
+    
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return when {
+            oldList[oldItemPosition].ingredient == newList[newItemPosition].ingredient -> true
+            oldList[oldItemPosition].measure == newList[newItemPosition].measure -> true
+            else -> false
+        }
+    }
+    
+}
+
+class InstructionDiffUtils(private val oldList: List<Instruction>,
+                           private val newList: List<Instruction>):
+    DiffUtil.Callback() {
+    
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+    
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+    
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].instruction == newList[newItemPosition].instruction
+    }
+    
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].instruction == newList[newItemPosition].instruction
+    }
+    
+}

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.eunice.recipes.databinding.RecipeDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipeDetailsFragment : Fragment() {
@@ -21,10 +22,6 @@ class RecipeDetailsFragment : Fragment() {
     private val recipeDetailsFragmentArgs by navArgs<RecipeDetailsFragmentArgs>()
     private lateinit var recipeDetailsBinding: RecipeDetailsFragmentBinding
     private lateinit var mealDetailsAdapter: MealDetailsAdapter
-
-    companion object {
-        fun newInstance() = RecipeDetailsFragment()
-    }
 
     private val viewModel by viewModels<RecipeDetailsViewModel>()
     
@@ -40,29 +37,34 @@ class RecipeDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             recipeDetailsFragmentArgs.mealId?.let { viewModel.getMealById(it) }
         }
         
         lifecycleScope.launchWhenStarted {
             viewModel.mealUIState.collect {
-                
-                if (it.meal != null) {
-                    Glide
-                        .with(this@RecipeDetailsFragment)
-                        .load(it.meal.mealImg)
-                        .placeholder(R.drawable.ic_empty_screen)
-                        .into(recipeDetailsBinding.ivMealImage)
-                    
-                    mealDetailsAdapter = MealDetailsAdapter(it.meal)
-                    setupLayoutManager()
-                    recipeDetailsBinding.rvIngredients.adapter = mealDetailsAdapter
-                }
-    
-                if (it.errorMessage?.isNotBlank() == true) {
-                    Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
-                }
+                setupDetails(it)
             }
+        }
+    }
+    
+    private fun setupDetails(mealUIState
+                             : RecipeDetailsViewModel.MealUIState) {
+        
+        if (mealUIState.meal != null) {
+            Glide
+                .with(this@RecipeDetailsFragment)
+                .load(mealUIState.meal.mealImg)
+                .placeholder(R.drawable.ic_empty_screen)
+                .into(recipeDetailsBinding.ivMealImage)
+        
+            mealDetailsAdapter = MealDetailsAdapter(mealUIState.meal)
+            setupLayoutManager()
+            recipeDetailsBinding.rvIngredients.adapter = mealDetailsAdapter
+        }
+    
+        if (mealUIState.errorMessage?.isNotBlank() == true) {
+            Toast.makeText(context, mealUIState.errorMessage, Toast.LENGTH_LONG).show()
         }
     }
     
@@ -80,6 +82,8 @@ class RecipeDetailsFragment : Fragment() {
         }
         recipeDetailsBinding.rvIngredients.layoutManager = gridManager
     }
-
     
+    companion object {
+        fun newInstance() = RecipeDetailsFragment()
+    }
 }
