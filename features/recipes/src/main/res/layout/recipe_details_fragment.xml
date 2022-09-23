@@ -8,32 +8,40 @@
 
     <ImageView
         android:id="@+id/iv_meal_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/card_background"
+        android:adjustViewBounds="true"
         tools:src="@drawable/ic_empty_screen"
         />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:background="@drawable/bg_bookmark">
 
     <ImageButton
         android:id="@+id/ib_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/transparent"
         android:src="@drawable/ic_bookmark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_image_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45"
+        app:layout_constraintGuide_percent="0.48"
         />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,17 +55,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ingredients"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:clipToPadding="false"
-            android:layout_marginTop="@dimen/normal_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:orientation="horizontal"
-            app:spanCount="3"
             tools:listitem="@layout/item_ingredient"
             />
 

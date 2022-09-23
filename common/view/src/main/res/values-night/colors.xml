@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="main_colour">#F76E58</color>
-    <color name="text_colour">#D2D2D2</color>
+    <color name="text_colour">#D6D6D6</color>
     <color name="light_text_colour">#AAAAAA</color>
+    <color name="normal_text_colour">#BABABA</color>
     <color name="mini_text_colour">#2D2D2D</color>
     <color name="search_text_colour">#3D3D3D</color>
     <color name="background_colour">#E0E0E0</color>
@@ -10,9 +11,10 @@
     <color name="icon_selected_colour">#EC6752</color>
     <color name="bottom_nav_background">#232323</color>
     <color name="card_background">#C1C1C1</color>
-    <color name="num_background">#CACACA</color>
+    <color name="num_background">#F87E6B</color>
     <color name="grey_text_colour">#575757</color>
-    <color name="ingredient_bg_colour">#E0E0E0</color>
+    <color name="ingredient_bg_colour">#C8C8C8</color>
+    <color name="selector_bg_colour">#BABABA</color>
 
     <color name="main_peach">#F76E58</color>
     <color name="text_peach">#EC6752</color>

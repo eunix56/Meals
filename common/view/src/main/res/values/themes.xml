@@ -60,6 +60,12 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
+    <style name="RegularHeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/text_colour</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
     <style name="CardGreyTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:textColor">@color/mini_text_colour</item>

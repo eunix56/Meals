@@ -40,21 +40,22 @@ class MealCategoryAdapter(private val categories: List<Category>,
 
     override fun onBindViewHolder(holder: MealCategoryViewHolder, position: Int) {
         val category = categories[position]
-
-        Glide.with(holder.binding.root.context)
-            .load(getIcon(category.categoryName, holder.binding.root.context))
+        val context = holder.binding.root.context
+        Glide.with(context)
+            .load(getIcon(category.categoryName, context))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.binding.ivCategoryImg)
 
         holder.binding.tvCategoryTitle.text = category.categoryName
+        holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_grey_box)
 
         holder.binding.root.setOnClickListener {
             if (checkedPosition == holder.adapterPosition) {
                 checkedPosition = RecyclerView.NO_POSITION
-                notifyItemChanged(checkedPosition)
             }
             checkedPosition = holder.adapterPosition
             notifyItemChanged(checkedPosition)
+            holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_peach_box)
             listener.selectCategory(categories[checkedPosition])
         }
 

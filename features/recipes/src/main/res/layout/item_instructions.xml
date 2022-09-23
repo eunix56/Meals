@@ -13,12 +13,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginStart="@dimen/normal_spacing"
         android:background="@drawable/bg_instructions_num"
         android:theme="@style/NumberingTextView"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
         tools:text="1"
         />
 
@@ -29,10 +30,11 @@
         app:layout_constraintTop_toTopOf="@id/tv_instructions_num"
         app:layout_constraintStart_toEndOf="@id/tv_instructions_num"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tv_instructions_num"
         android:layout_marginStart="@dimen/normal_spacing"
         android:layout_marginEnd="@dimen/normal_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:theme="@style/CardGreyTextView"
+        android:textColor="@color/text_colour"
         tools:text="Boil water and add all the necessary ingredients"
         />
 

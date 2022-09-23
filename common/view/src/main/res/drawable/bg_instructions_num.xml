@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="oval">
+        <shape android:shape="rectangle">
+            <corners android:bottomLeftRadius="9dp"
+                android:topRightRadius="9dp"
+                android:bottomRightRadius="9dp"/>
             <solid android:color="@color/num_background"/>
         </shape>
     </item>

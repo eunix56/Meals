@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/normal_spacing">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_line_layout"
@@ -16,15 +17,16 @@
 
     <TextView
         android:id="@+id/tv_meal_title"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/large_spacing"
         android:theme="@style/MealTextView"
         tools:text="Pancake with honey"
+        android:textColor="@color/text_colour"
         />
 
     <TextView
@@ -33,15 +35,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
         app:layout_constraintEnd_toEndOf="@id/gl_line_layout"
-        android:theme="@style/SmallHeaderTextView"
-        android:layout_marginTop="@dimen/large_spacing"
+        android:theme="@style/RegularHeaderTextView"
+        android:layout_marginTop="@dimen/normal_spacing"
         android:text="@string/ingredients"
         android:paddingStart="@dimen/large_spacing"
         android:paddingEnd="@dimen/large_spacing"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:background="@drawable/bg_left_selected"
-        android:textColor="@color/light_text_colour"
+        android:textColor="@color/search_text_colour"
         />
 
     <TextView
@@ -50,8 +52,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_meal_title"
         app:layout_constraintStart_toStartOf="@id/gl_line_layout"
-        android:theme="@style/SmallHeaderTextView"
-        android:layout_marginTop="@dimen/large_spacing"
+        android:theme="@style/RegularHeaderTextView"
+        android:layout_marginTop="@dimen/normal_spacing"
         android:text="@string/instructions"
         android:paddingStart="@dimen/large_spacing"
         android:paddingEnd="@dimen/large_spacing"

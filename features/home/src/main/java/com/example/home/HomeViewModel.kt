@@ -25,6 +25,8 @@ class HomeViewModel @Inject constructor(
     private val _categoryMealsUIState = MutableStateFlow(CategoryMealsUIState(isLoading = true))
     val categoryMealsUIState: StateFlow<CategoryMealsUIState> = _categoryMealsUIState
 
+
+
     init {
         viewModelScope.launch {
 

@@ -34,6 +34,6 @@ class MealRemoteImpl @Inject constructor(
     
     override suspend fun fetchMealById(id: String): MealEntity {
         val meal = mealApiService.getMealById(id)
-        return mealModelEntityMapper.mapFromModel(meal.meals)
+        return mealModelEntityMapper.mapFromModel(meal.meals[0])
     }
 }
