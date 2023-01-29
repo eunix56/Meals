@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/recipes_search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        android:layout_marginTop="@dimen/very_small_spacing"
+        android:background="@drawable/bg_grey_box"
+        app:searchIcon="@drawable/ic_search"
+        app:closeIcon="@drawable/ic_close_24"
+        app:defaultQueryHint="Search for meals"
+        android:theme="@style/SearchTextView"
+        app:queryBackground="@color/background_colour"
+        />
+
+    <TextView
+        android:id="@+id/tv_searched_recipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/recipes_search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:text="@string/search_results"
+        android:layout_marginTop="@dimen/normal_spacing"
+        android:theme="@style/HeaderTextView"
+        android:textColor="@color/main_colour"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

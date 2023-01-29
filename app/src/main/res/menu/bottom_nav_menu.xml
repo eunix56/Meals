@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/homeFragment"
+    <item android:id="@+id/home_graph"
         android:title="@string/home"
         android:icon="@drawable/ic_home_24"
         />
 
-    <item android:id="@+id/recipesFragment"
+    <item android:id="@+id/recipes_graph"
         android:title="@string/recipes"
         android:icon="@drawable/ic_recipes_24"
         />
+
+    <item android:id="@+id/ingredientsFragment"
+        android:title="@string/ingredients"
+        android:icon="@drawable/ic_ingredients_24"
+        />
+
 
     <item android:id="@+id/favouriteFragment"
         android:title="@string/favourites"

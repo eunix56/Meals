@@ -5,7 +5,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
  */
 
 object Dependencies {
-    const val applicationId = "com.example.meals"
+    const val applicationId = "com.eunice.meals"
 
     interface Libraries {
         val libraries: List<String>

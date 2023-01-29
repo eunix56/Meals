@@ -7,9 +7,15 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.recipes.RecipesFragment"
+        android:name="com.eunice.recipes.RecipesFragment"
         android:label="recipes_fragment"
         tools:layout="@layout/recipes_fragment" >
+        <argument
+            android:name="searchQuery"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="true" />
+
         <action
             android:id="@+id/action_recipesFragment_to_recipeDetailFragment"
             app:destination="@id/recipe_details_graph">

@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -35,11 +37,21 @@ android {
 
 
 dependencies {
+    implementation(project(Dependencies.ProjectLib.domain))
 
     Dependencies.View.run {
         implementation(appCompat)
         implementation(constraintLayout)
         implementation(material)
+    }
+    
+    Dependencies.DI.run {
+        implementation(daggerHilt)
+        kapt(Dependencies.DI.AnnotationProcessor.daggerHilt)
+    }
+    
+    Dependencies.Network.run {
+        implementation(moshiKotlin)
     }
 
     Dependencies.UnitTesting.run {

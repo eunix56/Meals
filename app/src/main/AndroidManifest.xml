@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meals"
-        android:name="com.example.meals.MealApplication">
+        android:name="com.eunice.meals.MealApplication">
         <activity
-            android:name="com.example.meals.MealsActivity"
+            android:name="com.eunice.meals.MealsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
