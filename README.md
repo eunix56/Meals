@@ -30,6 +30,9 @@ The Meals app is an Android application that displays random meals from around t
 * [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
   
 # Screenshots
+![Screenshot_2024-05-08-16-14-34-112_com eunice meals](https://github.com/eunix56/Meals/assets/31594540/1965e665-a53f-4716-8200-8117efe297f8)
+![IMG_20240428_221227](https://github.com/eunix56/Meals/assets/31594540/f5b7fabd-a1c8-4b89-a188-a126520aad68)
+
 
 # Author
 Eunice Bakare
