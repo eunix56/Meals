@@ -9,6 +9,7 @@ package com.eunice.navigation
 sealed class GlobalNavigationFlow {
     object HomeFlow: GlobalNavigationFlow()
     object RecipeFlow: GlobalNavigationFlow()
+    object IngredientFlow: GlobalNavigationFlow()
 }
 
 sealed class NavigationFlow {

@@ -1,0 +1,6 @@
+<resources>
+    <string name="bookmark">Signet</string>
+    <string name="open_meal">Repas ouvert</string>
+    <string name="category_with_slash"><![CDATA[Catégorie : %s |]]></string>
+    <string name="area"><![CDATA[Zone : %s]]></string>
+</resources>

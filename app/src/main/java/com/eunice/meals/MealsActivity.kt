@@ -3,7 +3,9 @@ package com.eunice.meals
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.eunice.navigation.Navigator
@@ -23,6 +25,7 @@ class MealsActivity : AppCompatActivity() {
     private lateinit var activityMealsBinding:
             ActivityMealsBinding
     private lateinit var navController: NavController
+    private val topLevels = listOf(R.id.homeFragment, R.id.recipesFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,7 @@ class MealsActivity : AppCompatActivity() {
         val navHostFragment =  supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
-        
+
         navigator.navController = navController
         activityMealsBinding.bnvMeals.setupWithNavController(navController)
     }

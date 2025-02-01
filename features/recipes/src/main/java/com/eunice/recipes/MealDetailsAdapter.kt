@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.eunice.domain.model.Meal
+import com.eunice.domain.model.*
 import com.eunice.recipes.databinding.ItemIngredientBinding
 import com.eunice.recipes.databinding.ItemInstructionsBinding
 import com.eunice.recipes.databinding.ItemMealTitleBinding
@@ -22,11 +22,10 @@ import com.eunice.recipes.databinding.ItemMealTitleBinding
 class MealDetailsAdapter(private val recipe: Meal) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var isIngredient = true
-    private var ingredientData: List<IngredientData> = emptyList()
     private var instructions: List<Instruction> = emptyList()
     
     init {
-        setIngredientAndInstruction()
+        instructions = convertMealToInstructions(recipe)
     }
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -49,7 +48,7 @@ class MealDetailsAdapter(private val recipe: Meal) :
                 }
             }
             INGREDIENTS -> if (holder is MealIngredientsViewHolder) {
-                val ingredient = ingredientData[position - 1]
+                val ingredient = recipe.ingredients[position - 1]
                 
                 Glide.with(holder.ingredientBinding.root.context)
                     .load("https://www.themealdb.com/images/ingredients/${ingredient.ingredient}.png")
@@ -73,7 +72,7 @@ class MealDetailsAdapter(private val recipe: Meal) :
     
     override fun getItemCount(): Int {
         return if (isIngredient)
-            ingredientData.size + 1
+            recipe.ingredients.size + 1
         else
             instructions.size + 1
     }
@@ -88,19 +87,34 @@ class MealDetailsAdapter(private val recipe: Meal) :
     private fun setIsIngredient(showIngredient: Boolean) {
         if (showIngredient) {
             notifyItemRangeRemoved(1, instructions.size)
-            notifyItemRangeInserted(1, ingredientData.size)
+            notifyItemRangeInserted(1, recipe.ingredients.size)
         }
         else {
-            notifyItemRangeRemoved(1, ingredientData.size)
+            notifyItemRangeRemoved(1, recipe.ingredients.size)
             notifyItemRangeInserted(1, instructions.size)
         }
     
         isIngredient = showIngredient
     }
-    
-    private fun setIngredientAndInstruction() {
-        ingredientData = convertMealToIngredients(recipe)
-        instructions = convertMealToInstructions(recipe)
+
+    private fun convertMealToInstructions(meal: Meal): List<Instruction> {
+        val rawInstructions = ArrayList<Instruction>()
+        //Split instructions into steps by breaking them at full stop (.)
+        val stringInstructions = meal.mealSteps?.split(".") ?: return rawInstructions
+
+        //Remove all extra new lines embedded in instructions after splitting done above
+        val extraNewLineRegex = "(\\r\\n)+\\d|\\r\\n|\\d(\\r\\n)+".toRegex()
+
+        for (i in stringInstructions) {
+            rawInstructions.add(Instruction(i.replace(extraNewLineRegex, "")))
+        }
+
+        //Remove duplicate or empty instructions
+        val clearInstructions = rawInstructions.filter { data ->
+            data.instruction.isNotEmpty()
+        }.distinct()
+
+        return clearInstructions
     }
 }
 

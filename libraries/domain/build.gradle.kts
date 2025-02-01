@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace = "com.eunice.domain"
+
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk

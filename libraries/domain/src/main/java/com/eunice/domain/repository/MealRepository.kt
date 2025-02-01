@@ -14,9 +14,13 @@ interface MealRepository {
 
     suspend fun fetchCategoryMeals(category: String): Flow<DataResult<List<Meal>>>
 
+    suspend fun fetchMealsFromPlaces(placeName: String): Flow<DataResult<List<Meal>>>
+
     suspend fun fetchIngredientMeals(ingredient: String): Flow<DataResult<List<Meal>>>
     
     suspend fun fetchMealById(id: String): Flow<DataResult<Meal>>
     
     suspend fun fetchRandomMeal(): Flow<DataResult<Meal>>
+
+    suspend fun addMealToFavourites(mealId: String): Flow<DataResult<String>>
 }

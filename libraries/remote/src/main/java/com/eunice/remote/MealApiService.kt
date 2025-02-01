@@ -13,11 +13,16 @@ interface MealApiService {
     @GET("search.php")
     suspend fun getSearchedMealRecipes(
         @Query("s") searchValue: String
-    ): MealListModel
+    ): MealListModel?
 
     @GET("filter.php")
     suspend fun getCategoryMealRecipes(
         @Query("c") category: String
+    ): MealListModel
+
+    @GET("filter.php")
+    suspend fun getMealsFromPlacesRecipes(
+        @Query("a") area: String
     ): MealListModel
 
     @GET("filter.php")
@@ -27,6 +32,9 @@ interface MealApiService {
 
     @GET("list.php?c=list")
     suspend fun getCategories(): CategoryMealsModel
+
+    @GET("list.php?a=list")
+    suspend fun getPlaces(): PlacesModel
 
     @GET("list.php?i=list")
     suspend fun getIngredients(): IngredientMealsModel

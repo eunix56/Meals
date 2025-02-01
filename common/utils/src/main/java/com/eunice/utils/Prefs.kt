@@ -86,13 +86,13 @@ class Prefs @Inject constructor(context: Context, val moshi: Moshi) {
         return convertStringToJson(categories)
     }
     
-    fun saveCategories(categories: List<Category>) {
+    fun saveCategories(categories: List<String>) {
         sharedPrefs.apply {
             edit().putString(CATEGORIES, convertListJsonToString(categories)).apply()
         }
     }
     
-    fun getCategories(): List<Category>? {
+    fun getCategories(): List<String>? {
         val categories = sharedPrefs.getString(CATEGORIES, "")
         if (categories.isNullOrEmpty())
             return emptyList()
@@ -124,13 +124,13 @@ class Prefs @Inject constructor(context: Context, val moshi: Moshi) {
         return jsonAdapter.fromJson(meal)
     }
     
-    inline fun<reified T> convertListJsonToString(meal: List<T>): String {
+    private inline fun<reified T> convertListJsonToString(meal: List<T>): String {
         val type = Types.newParameterizedType(List::class.java, T::class.java)
         val jsonAdapter: JsonAdapter<List<T>> = moshi.adapter(type)
         return jsonAdapter.toJson(meal)
     }
     
-    inline fun<reified T> convertListStringToJson(meal: String): List<T>? {
+    private inline fun<reified T> convertListStringToJson(meal: String): List<T>? {
         val type = Types.newParameterizedType(List::class.java, T::class.java)
         val jsonAdapter: JsonAdapter<List<T>> = moshi.adapter(type)
         return jsonAdapter.fromJson(meal)

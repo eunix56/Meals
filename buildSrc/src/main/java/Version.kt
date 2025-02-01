@@ -4,9 +4,9 @@
  */
 
 object Version {
-    const val gradle = "7.1.3"
-    const val kotlinGradle = "1.6.21"
-    const val hilt = "2.40"
+    const val gradle = "8.7.1"
+    const val kotlinGradle = "2.0.10"
+    const val hilt = "2.51.1"
 
     val appCompat = "1.4.1"
     val material = "1.5.0"
@@ -16,8 +16,9 @@ object Version {
 
     val coreKtx = "1.7.0"
     val legacySupport = "1.0.0"
-    val navigation = "2.4.1"
+    val navigation = "2.5.0"
     val lifecycleKtx = "2.4.1"
+    val room = "2.4.1"
 
 
     val retrofit = "2.9.0"
@@ -25,7 +26,7 @@ object Version {
     val okHttp = "4.7.2"
     val moshi = "1.12.0"
 
-    val junit = "4.+"
+    val junit = "4.13.2"
     val extJunit = "1.1.3"
     val espresso = "3.4.0"
 }

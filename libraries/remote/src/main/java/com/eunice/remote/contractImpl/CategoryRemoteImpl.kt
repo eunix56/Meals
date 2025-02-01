@@ -15,12 +15,12 @@ class CategoryRemoteImpl @Inject constructor(
     private val categoryModelEntityMapper: CategoryModelEntityMapper
 ): CategoryRemote {
 
-    override suspend fun fetchCategories(): List<CategoryEntity> {
+    override suspend fun fetchCategoryNames(): List<CategoryEntity> {
         val categories = apiService.getCategories()
         return categoryModelEntityMapper.mapModelList(categories.meals)
     }
 
-    override suspend fun fetchFullCategories(): List<CategoryEntity> {
+    override suspend fun fetchCategoryData(): List<CategoryEntity> {
         val fullCategories = apiService.getFullCategories()
         return categoryModelEntityMapper.mapModelList(fullCategories.categories)
     }

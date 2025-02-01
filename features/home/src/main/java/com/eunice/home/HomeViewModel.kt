@@ -3,21 +3,23 @@ package com.eunice.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eunice.domain.handler.DataResult
-import com.eunice.domain.model.Category
 import com.eunice.domain.model.Meal
-import com.eunice.domain.usecase.FetchCategoriesUseCase
 import com.eunice.domain.usecase.FetchCategoryMealsUseCase
+import com.eunice.domain.usecase.GetCategoryNamesUseCase
 import com.eunice.utils.Prefs
 import com.eunice.view.getErrorResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val categoryMealsUseCase: FetchCategoryMealsUseCase,
-    private val categoriesUseCase: FetchCategoriesUseCase,
+    private val geCategoryNamesUseCase: GetCategoryNamesUseCase,
     private val prefs: Prefs
 ) : ViewModel() {
     
@@ -52,22 +54,22 @@ class HomeViewModel @Inject constructor(
                 errorMessage = getErrorResponse(categoryMeals.error))
             }
             else -> _categoryMealsUIState.update {
-                    uiState -> uiState.copy(isLoading = true)
+                    uiState -> uiState.copy(isLoading = false)
             }
         }
     }
     
     private suspend fun getCategories() {
-        when(val categories: DataResult<List<Category>>
-                = categoriesUseCase.invoke().first()) {
+        when(val categories
+                = geCategoryNamesUseCase().first()) {
         
             is DataResult.Success -> {
                 prefs.saveCategories(categories.data)
                 _categoryUIState.update { uiState ->
                     uiState.copy(isLoading = false,
-                        categories = categories.data)
+                        categoryNames = categories.data)
                 }
-                selectCategory(categories.data.first().categoryName)
+                selectCategory(categories.data.first())
             }
             is DataResult.Error -> _categoryUIState.update {
                     uiState -> uiState.copy(isLoading = false,
@@ -95,7 +97,7 @@ class HomeViewModel @Inject constructor(
                 meals.add(meal)
         }
         
-        if (meals.isNullOrEmpty())
+        if (meals.isEmpty())
             selectCategoryRemote(categoryName)
         else
             _categoryMealsUIState.update {
@@ -107,16 +109,16 @@ class HomeViewModel @Inject constructor(
         if (prefs.getCategories()?.isNotEmpty() == true) {
             _categoryUIState.update { uiState ->
                 uiState.copy(isLoading = false,
-                    categories = prefs.getCategories()!!)
+                    categoryNames = prefs.getCategories()!!)
             }
-            selectCategory(prefs.getCategories()!!.first().categoryName)
+            selectCategory(prefs.getCategories()!!.first())
         } else getCategories()
     }
 
 
     data class CategoryUIState(
         val isLoading: Boolean = false,
-        val categories: List<Category> = emptyList(),
+        val categoryNames: List<String> = emptyList(),
         val errorMessage: String? = null
     )
 

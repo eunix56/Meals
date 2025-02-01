@@ -27,7 +27,5 @@
         </action>
     </fragment>
 
-    <include app:graph="@navigation/recipe_details_graph"/>
-
 
 </navigation>

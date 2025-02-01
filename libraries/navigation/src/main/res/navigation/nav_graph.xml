@@ -10,6 +10,10 @@
 
     <include app:graph="@navigation/recipe_details_graph" />
 
+    <include app:graph="@navigation/ingredient_graph" />
+
+    <include app:graph="@navigation/favourites_graph" />
+
     <action
         android:id="@+id/actionGlobalHomeFlow"
         app:destination="@id/home_graph"
@@ -33,12 +37,26 @@
     </action>
 
     <action
+        android:id="@+id/actionGlobalIngredientsFlow"
+        app:destination="@id/ingredient_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/actionGlobalFavouritesFlow"
+        app:destination="@id/favourites_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"/>
+
+    <action
         android:id="@+id/actionRecipeDetailsFlow"
         app:destination="@id/recipe_details_graph"
         app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popUpTo="@id/recipe_details_graph"
-        app:popUpToInclusive="true">
+        app:exitAnim="@anim/nav_default_exit_anim">
         <argument
             android:name="mealId"
             app:argType="string"

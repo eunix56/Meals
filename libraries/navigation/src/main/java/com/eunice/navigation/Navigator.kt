@@ -15,6 +15,7 @@ class Navigator @Inject constructor() {
     fun navigateToGlobalFlow(globalNavigationFlow: GlobalNavigationFlow) = when(globalNavigationFlow) {
         GlobalNavigationFlow.HomeFlow -> navController.navigate(NavGraphDirections.actionGlobalHomeFlow())
         GlobalNavigationFlow.RecipeFlow -> navController.navigate(NavGraphDirections.actionGlobalRecipesFlow(null))
+        GlobalNavigationFlow.IngredientFlow -> navController.navigate(NavGraphDirections.actionGlobalIngredientsFlow())
     }
     
     fun navigateToSearchResultsFlow(searchQuery: String) =

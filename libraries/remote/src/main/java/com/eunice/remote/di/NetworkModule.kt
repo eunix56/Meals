@@ -3,14 +3,17 @@ package com.eunice.remote.di
 import com.eunice.data.contract.CategoryRemote
 import com.eunice.data.contract.IngredientRemote
 import com.eunice.data.contract.MealRemote
+import com.eunice.data.contract.PlaceRemote
 import com.eunice.remote.MealApiFactory
 import com.eunice.remote.MealApiService
 import com.eunice.remote.contractImpl.CategoryRemoteImpl
 import com.eunice.remote.contractImpl.IngredientRemoteImpl
 import com.eunice.remote.contractImpl.MealRemoteImpl
+import com.eunice.remote.contractImpl.PlaceRemoteImpl
 import com.eunice.remote.mapper.CategoryModelEntityMapper
 import com.eunice.remote.mapper.IngredientModelEntityMapper
 import com.eunice.remote.mapper.MealModelEntityMapper
+import com.eunice.remote.mapper.PlacesModelEntityMapper
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Binds
@@ -38,6 +41,9 @@ interface NetworkModule {
     @get:[Binds Singleton]
     val MealRemoteImpl.bindMealRemote: MealRemote
 
+    @get:[Binds Singleton]
+    val PlaceRemoteImpl.bindPlaceRemote: PlaceRemote
+
     companion object {
         @get:[Provides Singleton]
         val provideMoshi: Moshi
@@ -57,5 +63,8 @@ interface NetworkModule {
 
         @get: [Provides Singleton]
         val fetchMealModelMapper = MealModelEntityMapper()
+
+        @get: [Provides Singleton]
+        val fetchPlacesModelMapper = PlacesModelEntityMapper()
     }
 }

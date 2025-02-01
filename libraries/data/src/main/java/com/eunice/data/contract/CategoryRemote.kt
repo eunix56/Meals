@@ -8,7 +8,7 @@ import com.eunice.data.entities.CategoryEntity
  * Email: eunice@reach.africa
  */
 interface CategoryRemote {
-    suspend fun fetchCategories(): List<CategoryEntity>
+    suspend fun fetchCategoryNames(): List<CategoryEntity>
 
-    suspend fun fetchFullCategories(): List<CategoryEntity>
+    suspend fun fetchCategoryData(): List<CategoryEntity>
 }

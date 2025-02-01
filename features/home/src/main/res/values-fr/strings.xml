@@ -1,0 +1,5 @@
+<resources>
+    <string name="cook_a_nice_meal_header">Envie de cuisiner un bon repas \?</string>
+    <string name="welcome_header">Accueillir!</string>
+    <string name="food_image">Image alimentaire</string>
+</resources>

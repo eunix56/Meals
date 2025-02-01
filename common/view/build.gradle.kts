@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace = "cm.eunice.view"
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk

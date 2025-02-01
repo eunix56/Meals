@@ -1,0 +1,125 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context="com.eunice.ingredients.IngredientDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_spacing"
+            app:layout_constraintTop_toTopOf="@id/tv_ingredient_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ingredient_name"
+            android:src="@drawable/ic_go_back"
+            android:contentDescription="@string/go_back" />
+
+
+        <TextView
+            android:id="@+id/tv_ingredient_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_large_spacing"
+            android:layout_marginStart="@dimen/normal_spacing"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_go_back"
+            android:theme="@style/HeaderTextView"
+            android:textColor="@color/main_colour"
+            tools:text="Chicken"
+            />
+
+        <ImageView
+            android:id="@+id/iv_ingredient_img"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="270dp"
+            android:minHeight="200dp"
+            android:src="@drawable/ing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ingredient_name"
+            android:layout_marginHorizontal="@dimen/normal_spacing"
+            android:layout_marginTop="@dimen/normal_spacing"
+            android:contentDescription="@string/ingredient_image"
+            />
+
+        <TextView
+            android:id="@+id/tv_ingredient_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_large_spacing"
+            app:layout_constraintStart_toStartOf="@id/iv_go_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            app:layout_constraintTop_toBottomOf="@id/iv_ingredient_img"
+            android:text="@string/description"
+            android:theme="@style/CardHeaderTextView"
+            />
+
+        <TextView
+            android:id="@+id/tv_ingredient_desc_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_ingredient_desc"
+            app:layout_constraintStart_toStartOf="@id/tv_ingredient_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:theme="@style/CategoryTextView"
+            android:maxLines="5"
+            android:ellipsize="end"
+            tools:text="If you are refactoring a published API, you can pause the refactoring once you’ve created the new function. \nDuring this pause, deprecate the original function and wait for clients to change to the new function. \nThe original function declaration can be removed when (and if) you’re confident all the clients of the old function have migrated to the new one."
+            />
+
+        <TextView
+            android:id="@+id/tv_ingredient_read_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/iv_go_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            android:text="@string/read_more"
+            app:layout_constraintTop_toBottomOf="@id/tv_ingredient_desc_text"
+            android:theme="@style/NumberingTextView"
+            />
+
+        <TextView
+            android:id="@+id/tv_meals_with_ingredient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_large_spacing"
+            app:layout_constraintStart_toStartOf="@id/iv_go_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            app:layout_constraintTop_toBottomOf="@id/tv_ingredient_read_more"
+            tools:text="Meals with Chicken"
+            android:theme="@style/SmallHeaderTextView"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_meals_with_ing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_meals_with_ingredient"
+            app:layout_constraintStart_toStartOf="@id/tv_meals_with_ingredient"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_meal_with_name"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -24,6 +24,13 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycleKtx}"
         val lifecycleRuntime: String =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycleKtx}"
+        val roomRuntime: String = "androidx.room:room-runtime:${Version.room}"
+        val roomKtx: String = "androidx.room:room-ktx:${Version.room}"
+
+
+        object AnnotationProcessor {
+            val room: String = "androidx.room:room-compiler:${Version.room}"
+        }
 
         override val libraries: List<String>
             get() = listOf(
@@ -32,7 +39,9 @@ object Dependencies {
                 navigationFragmentKtx,
                 navigationUiKtx,
                 viewModel,
-                lifecycleRuntime
+                lifecycleRuntime,
+                roomRuntime,
+                roomKtx
             )
     }
 

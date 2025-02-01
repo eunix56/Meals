@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/small_spacing"
+    android:layout_marginEnd="@dimen/small_spacing"
+    android:layout_marginTop="@dimen/normal_spacing"
+    android:layout_marginBottom="@dimen/large_spacing"
+    >
+
+    <ImageView
+        android:id="@+id/iv_meal_img"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_meal_name"
+        android:src="@drawable/food"
+        android:contentDescription="@string/meal_image"
+        />
+
+    <TextView
+        android:id="@+id/tv_meal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/CategoryMealTextView"
+        android:padding="@dimen/very_small_spacing"
+        android:background="@drawable/bg_card_box"
+        android:layout_gravity="bottom"
+        tools:text="Kenya"
+        android:ellipsize="end"
+        android:maxLength="12"
+        />
+
+</androidx.cardview.widget.CardView>

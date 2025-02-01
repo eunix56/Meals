@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@id/bnv_meals"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph"
-        />
+        tools:layout="@layout/home_fragment" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_meals"

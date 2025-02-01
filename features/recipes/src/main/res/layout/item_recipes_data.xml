@@ -11,14 +11,13 @@
         android:id="@+id/tv_meal_of_the_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/recipes_search_bar"
-        app:layout_constraintBottom_toBottomOf="@id/recipes_search_bar"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/normal_spacing"
         android:text="@string/meal_of_the_day"
-        android:theme="@style/HeaderTextView"
         android:textColor="@color/main_colour"
-        />
+        android:theme="@style/HeaderTextView"
+        app:layout_constraintBottom_toBottomOf="@id/recipes_search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recipes_search_bar" />
 
 
     <androidx.appcompat.widget.SearchView
@@ -65,7 +64,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:adjustViewBounds="true"
-                tools:src="@drawable/images"
+                tools:src="@drawable/ic_empty_screen"
+                android:contentDescription="@string/image_of_the_day"
                 />
 
 
@@ -73,21 +73,24 @@
                 android:id="@+id/ib_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_bookmark"
-                android:padding="@dimen/small_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/normal_spacing"
                 android:background="@drawable/bg_bookmark"
+                android:contentDescription="@string/set_as_favourite"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="@dimen/small_spacing"
+                android:src="@drawable/ic_bookmark"
                 app:layout_constraintEnd_toEndOf="@id/iv_meal_img"
                 app:layout_constraintTop_toTopOf="@id/iv_meal_img"
-                android:layout_marginEnd="@dimen/normal_spacing"
-                android:layout_marginTop="@dimen/small_spacing"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
 
             <View
                 android:id="@+id/view_bg_text"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:background="@drawable/bg_card_box"
+                android:background="@drawable/bg_grey_card"
                 app:layout_constraintBottom_toBottomOf="@id/iv_meal_img"
                 app:layout_constraintStart_toStartOf="@id/iv_meal_img"
                 app:layout_constraintEnd_toEndOf="@id/iv_meal_img"
@@ -112,18 +115,17 @@
                 android:id="@+id/tv_meal_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_tag_card"
+                android:paddingStart="@dimen/small_spacing"
+                android:paddingTop="2dp"
+                android:paddingEnd="@dimen/small_spacing"
+                android:paddingBottom="2dp"
+                android:textColor="@color/mini_text_colour"
+                android:theme="@style/CategoryTextView"
                 app:layout_constraintStart_toStartOf="@id/tv_meal_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_meal_name"
-                android:theme="@style/CategoryTextView"
-                android:layout_marginTop="4dp"
-                tools:text="Italy"
-                android:paddingStart="@dimen/small_spacing"
-                android:paddingEnd="@dimen/small_spacing"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:background="@drawable/bg_grey_box"
-                android:textColor="@color/mini_text_colour"
-                />
+                tools:text="Italy" />
 
             <TextView
                 android:id="@+id/tv_meal_category"
@@ -139,7 +141,7 @@
                 android:paddingEnd="@dimen/small_spacing"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:background="@drawable/bg_grey_box"
+                android:background="@drawable/bg_tag_card"
                 android:textColor="@color/mini_text_colour"
                 />
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/ingredientsFragment"
+    android:id="@id/ingredient_graph">
+
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.eunice.ingredients.IngredientsFragment"
+        android:label="fragment_ingredients"
+        tools:layout="@layout/fragment_ingredients" >
+        <action
+            android:id="@+id/action_ingredientsFragment_to_ingredientDetailFragment"
+            app:destination="@id/ingredientDetailFragment"
+            app:popUpTo="@id/ingredientsFragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_ingredientsFragment_to_areaDetailFragment"
+            app:destination="@id/areaDetailFragment"
+            app:popUpTo="@id/ingredientsFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ingredientDetailFragment"
+        android:name="com.eunice.ingredients.IngredientDetailFragment"
+        android:label="fragment_ingredient_detail"
+        tools:layout="@layout/fragment_ingredient_detail">
+        <argument
+            android:name="ingredientName"
+            app:nullable="false"
+            app:argType="string" />
+
+        <argument
+            android:name="ingredientDesc"
+            app:nullable="false"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/areaDetailFragment"
+        android:name="com.eunice.ingredients.AreaDetailFragment"
+        android:label="fragment_area_detail"
+        tools:layout="@layout/fragment_area_detail"
+        >
+        <argument
+            android:name="areaName"
+            app:nullable="false"
+            app:argType="string" />
+
+        <argument
+            android:name="names"
+            app:nullable="false"
+            app:argType="string[]" />
+        <action
+            android:id="@+id/action_areaDetailFragment_self"
+            app:destination="@id/areaDetailFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+</navigation>

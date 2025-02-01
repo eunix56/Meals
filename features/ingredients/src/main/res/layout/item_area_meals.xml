@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/very_small_spacing"
+    android:layout_marginEnd="@dimen/small_spacing"
+    android:layout_marginTop="@dimen/small_spacing"
+    android:background="@drawable/bg_card_box"
+    >
+
+    <TextView
+        android:id="@+id/tv_meal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_meal_img"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:theme="@style/CategoryMealTextView"
+        tools:text="Beef Indomie"
+        />
+
+    <ImageView
+        android:id="@+id/iv_meal_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_meal_name"
+        tools:src="@drawable/ic_empty_screen"
+        android:contentDescription="@string/meal"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

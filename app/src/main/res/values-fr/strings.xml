@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Repas</string>
+    <string name="home">Maison</string>
+    <string name="recipes">Recettes</string>
+    <string name="favourites">Favoris</string>
+    <string name="ingredients">Ingrédients</string>
+</resources>

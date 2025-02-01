@@ -3,4 +3,6 @@
     <item name="home_graph" type="id"/>
     <item name="recipes_graph" type="id"/>
     <item name="recipe_details_graph" type="id" />
+    <item name="ingredient_graph" type="id"/>
+    <item name="favourites_graph" type="id"/>
 </resources>

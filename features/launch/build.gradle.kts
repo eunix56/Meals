@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace = "com.eunice.launch"
+
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk

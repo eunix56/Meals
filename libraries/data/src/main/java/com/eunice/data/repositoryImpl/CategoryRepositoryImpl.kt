@@ -21,11 +21,11 @@ class CategoryRepositoryImpl @Inject constructor(
     private val errorHandler: GeneralErrorHandler
 ): CategoryRepository {
 
-    override suspend fun fetchCategories(): Flow<DataResult<List<Category>>> {
-        var result: DataResult<List<Category>>
+    override suspend fun fetchCategoryNames(): Flow<DataResult<List<String>>> {
+        var result: DataResult<List<String>>
         return flow {
-                val categories = categoryRemote.fetchCategories()
-                result = DataResult.Success(categoryEntityModelMapper.mapFromEntityList(categories))
+                val categories = categoryRemote.fetchCategoryNames()
+                result = DataResult.Success(categories.map { it.categoryName })
                 emit(result)
             }.catch { throwable ->
                 result = DataResult.Error(errorHandler.getError(throwable))
@@ -33,11 +33,11 @@ class CategoryRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun fetchFullCategories(): Flow<DataResult<List<Category>>> {
+    override suspend fun fetchCategoryData(): Flow<DataResult<List<Category>>> {
         var result: DataResult<List<Category>>
 
         return flow {
-            val categories = categoryRemote.fetchFullCategories()
+            val categories = categoryRemote.fetchCategoryData()
             result = DataResult.Success(categoryEntityModelMapper.mapFromEntityList(categories))
             emit(result)
         }.catch { throwable ->

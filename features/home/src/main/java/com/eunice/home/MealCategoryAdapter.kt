@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.eunice.domain.model.Category
 import com.eunice.home.databinding.ItemCategoryBinding
 import java.lang.reflect.Field
 
@@ -16,18 +15,9 @@ import java.lang.reflect.Field
  * Created by EUNICE BAKARE T. on 20/04/2022
  * Email: eunice@reach.africa
  */
-class MealCategoryAdapter(private val categories: List<Category>,
-                          val listener: MealCategory)
-    : RecyclerView.Adapter<MealCategoryViewHolder>() {
-
-    private var categoryList = arrayListOf(
-        Category("43527", "Beef",
-            "https://www.themealdb.com/images/media/meals/1525873040.jpg", "Love it"),
-        Category("43523", "Fish",
-            "https://www.themealdb.com/images/media/meals/uwxusv1487344500.jpg", "Love it"),
-        Category("43527", "Egg",
-            "https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg", "Love it")
-    )
+class MealCategoryAdapter(private val categoryNames: List<String>,
+                          private val selectCategory: (String) -> Unit)
+    : RecyclerView.Adapter<MealCategoryAdapter.MealCategoryViewHolder>() {
 
     private var checkedPosition = -1
 
@@ -37,15 +27,15 @@ class MealCategoryAdapter(private val categories: List<Category>,
     }
 
     override fun onBindViewHolder(holder: MealCategoryViewHolder, position: Int) {
-        val category = categories[position]
+        val categoryName = categoryNames[position]
         val context = holder.binding.root.context
         Glide.with(context)
-            .load(getIcon(category.categoryName, context))
+            .load(getIcon(categoryName, context))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.binding.ivCategoryImg)
 
-        holder.binding.tvCategoryTitle.text = category.categoryName
-        holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_grey_box)
+        holder.binding.tvCategoryTitle.text = categoryName
+        holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_grey_card)
 
         holder.binding.root.setOnClickListener {
             if (checkedPosition == holder.adapterPosition) {
@@ -54,7 +44,7 @@ class MealCategoryAdapter(private val categories: List<Category>,
             checkedPosition = holder.adapterPosition
             notifyItemChanged(checkedPosition)
             holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_peach_box)
-            listener.selectCategory(categories[checkedPosition])
+            selectCategory(categoryNames[checkedPosition])
         }
 
     }
@@ -72,13 +62,9 @@ class MealCategoryAdapter(private val categories: List<Category>,
     }
 
     override fun getItemCount(): Int {
-        return categories.size
+        return categoryNames.size
     }
-}
 
-class MealCategoryViewHolder(val binding: ItemCategoryBinding)
-    : RecyclerView.ViewHolder(binding.root)
-
-interface MealCategory {
-    fun selectCategory(category: Category)
+    inner class MealCategoryViewHolder(val binding: ItemCategoryBinding)
+        : RecyclerView.ViewHolder(binding.root)
 }

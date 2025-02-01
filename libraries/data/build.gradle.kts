@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace = "com.eunice.data"
+
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
@@ -41,7 +43,14 @@ dependencies {
     Dependencies.Network.run {
         implementation(moshi)
         implementation(retrofit)
+        implementation(moshiKotlin)
         annotationProcessor(Dependencies.Network.AnnotationProcessor.moshi)
+    }
+
+    Dependencies.AndroidX.run {
+        implementation(roomRuntime)
+        implementation(roomKtx)
+        kapt(Dependencies.AndroidX.AnnotationProcessor.room)
     }
 
     Dependencies.DI.run {

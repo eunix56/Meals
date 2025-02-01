@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Email: eunice@reach.africa
  */
 interface CategoryRepository {
-    suspend fun fetchCategories(): Flow<DataResult<List<Category>>>
+    suspend fun fetchCategoryNames(): Flow<DataResult<List<String>>>
 
-    suspend fun fetchFullCategories(): Flow<DataResult<List<Category>>>
+    suspend fun fetchCategoryData(): Flow<DataResult<List<Category>>>
 }
 
 //usecases

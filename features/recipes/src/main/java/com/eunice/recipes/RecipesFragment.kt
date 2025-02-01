@@ -15,6 +15,7 @@ import com.eunice.recipes.databinding.RecipesFragmentBinding
 import com.eunice.utils.Prefs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -44,7 +45,7 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             if (recipesFragmentArgs.searchQuery.isNullOrEmpty())
                 viewModel.getRandomMealWithCategories()
             else
@@ -61,12 +62,37 @@ class RecipesFragment : Fragment() {
                     setupSearchMeals(it)
                 }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.favouriteMealUIState.collectLatest {
+                if (it.favouriteMealName?.isEmpty() == true) return@collectLatest
+
+                if (it.favouriteMealName == null) {
+                    Toast.makeText(
+                        context, getString(R.string.unable_to_add_to_fav, it.errorMessage),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        context, getString(R.string.meal_added_to_fav, it.favouriteMealName),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
         
     }
     
     private fun setupSearchMeals(mealUIState: RecipesViewModel.MealUIState) {
         if (!mealUIState.meals.isNullOrEmpty()) {
-            val adapter = SearchedMealsAdapter(mealUIState.meals)
+            val adapter = SearchedMealsAdapter(mealUIState.meals) {
+                lifecycleScope.launchWhenStarted {
+                    if (!it.isFavourite) {
+                        viewModel.markMealAsFavourite(it.id)
+                    }
+                }
+            }
+
             recipesFragmentBinding.rvRecipesData.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             recipesFragmentBinding.rvRecipesData.adapter = adapter
@@ -81,13 +107,21 @@ class RecipesFragment : Fragment() {
                                               : RecipesViewModel.MealWithCategoryUIState) {
         
         if (mealWithCategoryUIState.meal != null
-            && !mealWithCategoryUIState.categories.isNullOrEmpty()) {
+            && mealWithCategoryUIState.categories.isNotEmpty()
+        ) {
             val adapter = RecipesDataAdapter(mealWithCategoryUIState.meal,
                 mealWithCategoryUIState.categories, {
-                
+
                 }, {
                     navigator.navigateToRecipesDetailsFlow(it.id)
-                })
+                }) {
+                lifecycleScope.launchWhenStarted {
+                    if (!it.isFavourite) {
+                        viewModel.markMealAsFavourite(it.id)
+                    }
+                }
+            }
+
             recipesFragmentBinding.rvRecipesData.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             recipesFragmentBinding.rvRecipesData.adapter = adapter
