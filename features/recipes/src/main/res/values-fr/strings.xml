@@ -1,0 +1,18 @@
+<resources>
+    <string name="ingredients">Ingrédients</string>
+    <string name="instructions">Instructions</string>
+    <string name="instructions_num">%1$s</string>
+    <string name="meal_of_the_day">Repas du jour</string>
+    <string name="categories">Catégories</string>
+    <string name="search_results">Résultats de recherche</string>
+    <string name="category_image">Image de catégorie</string>
+    <string name="set_as_favourite">Définir comme favori</string>
+    <string name="meal_image">Image du repas</string>
+    <string name="bookmark_meal">Repas favori</string>
+    <string name="return_to_previous">Retour au précédent</string>
+    <string name="image_of_the_day">Image du jour</string>
+    <string name="meal_removed_from_fav"><![CDATA[%s a été supprimé des Favoris avec succès !]]></string>
+    <string name="meal_added_to_fav"><![CDATA[%s ajouté aux Favoris avec succès !]]></string>
+    <string name="unable_to_remove_from_fav"><![CDATA[Impossible de supprimer des favoris, veuillez réessayer :)]]></string>
+    <string name="unable_to_add_to_fav"><![CDATA[Impossible d\'ajouter aux Favoris car %s, veuillez réessayer :)]]></string>
+</resources>

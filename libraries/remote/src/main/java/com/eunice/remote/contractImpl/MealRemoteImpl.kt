@@ -1,7 +1,7 @@
 package com.eunice.remote.contractImpl
 
 import com.eunice.data.contract.MealRemote
-import com.eunice.data.entities.MealEntity
+import com.eunice.data.entities.MealDTO
 import com.eunice.remote.MealApiService
 import com.eunice.remote.mapper.MealModelEntityMapper
 import javax.inject.Inject
@@ -15,27 +15,32 @@ class MealRemoteImpl @Inject constructor(
     private val mealModelEntityMapper: MealModelEntityMapper,
 ): MealRemote {
 
-    override suspend fun fetchMeals(value: String): List<MealEntity> {
+    override suspend fun fetchMeals(value: String): List<MealDTO>? {
         val meals = mealApiService.getSearchedMealRecipes(value)
-        return mealModelEntityMapper.mapModelList(meals.meals)
+        return meals?.meals?.let { mealModelEntityMapper.mapModelList(it) }
     }
 
-    override suspend fun fetchCategoryMeals(categoryName: String): List<MealEntity> {
+    override suspend fun fetchCategoryMeals(categoryName: String): List<MealDTO> {
         val categoryMeals = mealApiService.getCategoryMealRecipes(categoryName)
         return mealModelEntityMapper.mapModelList(categoryMeals.meals)
     }
 
-    override suspend fun fetchIngredientMeals(ingredientName: String): List<MealEntity> {
+    override suspend fun fetchMealsFromPlaces(placeName: String): List<MealDTO> {
+        val placesMeals = mealApiService.getMealsFromPlacesRecipes(placeName)
+        return mealModelEntityMapper.mapModelList(placesMeals.meals)
+    }
+
+    override suspend fun fetchIngredientMeals(ingredientName: String): List<MealDTO> {
         val ingredients = mealApiService.getIngredientMeals(ingredientName)
         return mealModelEntityMapper.mapModelList(ingredients.meals)
     }
     
-    override suspend fun fetchMealById(id: String): MealEntity {
+    override suspend fun fetchMealById(id: String): MealDTO {
         val meal = mealApiService.getMealById(id)
         return mealModelEntityMapper.mapFromModel(meal.meals.first())
     }
     
-    override suspend fun fetchRandomMeal(): MealEntity {
+    override suspend fun fetchRandomMeal(): MealDTO {
         val meal = mealApiService.getRandomMeal()
         return mealModelEntityMapper.mapFromModel(meal.meals.first())
     }

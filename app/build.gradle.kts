@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace = Dependencies.applicationId
     defaultConfig {
         applicationId = Dependencies.applicationId
         minSdk = AppConfig.minSdk
@@ -28,15 +29,16 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     @Suppress("UnstableApiUsage")
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    @Suppress("UnstableApiUsage")
     viewBinding {
         android.buildFeatures.viewBinding = true
     }
@@ -65,6 +67,9 @@ dependencies {
         implementation(viewModel)
         implementation(navigationUiKtx)
         implementation(navigationFragmentKtx)
+        implementation(roomRuntime)
+        implementation(roomKtx)
+        kapt(Dependencies.AndroidX.AnnotationProcessor.room)
     }
 
     Dependencies.DI.run {

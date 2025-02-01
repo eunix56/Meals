@@ -1,70 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/background_grey"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RecipeDetailsFragment">
 
-    <ImageView
-        android:id="@+id/iv_meal_image"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:adjustViewBounds="true"
-        tools:src="@drawable/ic_empty_screen"
-        />
-
-    <ImageButton
-        android:id="@+id/ib_bookmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_bookmark"
-        android:padding="@dimen/small_spacing"
-        android:background="@drawable/bg_bookmark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="@dimen/normal_spacing"
-        android:layout_marginTop="@dimen/small_spacing"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_image_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48"
-        />
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/gl_image_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/bg_meal_card"
-        >
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/large_spacing"
+            android:layout_marginStart="@dimen/normal_spacing"
+            android:src="@drawable/ic_go_back"
+            android:contentDescription="@string/return_to_previous"
+            />
+
+        <ImageView
+            android:id="@+id/iv_meal_image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:adjustViewBounds="true"
+            tools:src="@drawable/ic_empty_screen"
+            android:contentDescription="@string/meal_image"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bookmark"
+            android:padding="@dimen/small_spacing"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:background="@drawable/bg_bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/normal_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:contentDescription="@string/bookmark_meal"
+            tools:ignore="SpeakableTextPresentCheck"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_image_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55"
+            />
+
+        <View
+            android:id="@+id/recyclerview_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_meal_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:translationY="-20dp"
+            android:background="@drawable/bg_meal_card"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ingredients"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/recyclerview_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:clipToPadding="false"
             android:layout_marginTop="@dimen/small_spacing"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="horizontal"
             tools:listitem="@layout/item_ingredient"
             />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

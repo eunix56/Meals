@@ -1,0 +1,11 @@
+<resources>
+    <string name="ingredient_image">Image de l\'ingrédient</string>
+    <string name="places">Lieux</string>
+    <string name="ingredients">Ingrédients</string>
+    <string name="go_back">Retourner</string>
+    <string name="description">Description</string>
+    <string name="read_more">En savoir plus</string>
+    <string name="meal_image">Image du repas</string>
+    <string name="meal">Repas</string>
+    <string name="explore_meals">Découvrez les repas !</string>
+</resources>

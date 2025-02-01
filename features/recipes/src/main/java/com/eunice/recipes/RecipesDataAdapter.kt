@@ -2,6 +2,7 @@ package com.eunice.recipes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eunice.domain.model.Category
@@ -17,7 +18,8 @@ import com.eunice.recipes.databinding.ItemRecipesDataBinding
 class RecipesDataAdapter(private val mainRecipe: Meal,
                          private val fullCategories: List<Category>,
                          private val onCategoryItemClick: ((Category) -> Unit),
-                         private val onMealItemClick:((Meal) -> Unit))
+                         private val onMealItemClick:((Meal) -> Unit),
+                         private val onAddToFavourites: (Meal) -> Unit)
     : RecyclerView.Adapter<RecipesViewHolder>() {
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
@@ -29,6 +31,12 @@ class RecipesDataAdapter(private val mainRecipe: Meal,
         holder.recipesDataBinding.tvMealName.text = mainRecipe.mealName
         holder.recipesDataBinding.tvMealArea.text = mainRecipe.mealArea
         holder.recipesDataBinding.tvMealCategory.text = mainRecipe.mealCategory
+        holder.recipesDataBinding.ibBookmark.setOnClickListener {
+            onAddToFavourites(mainRecipe)
+            holder.recipesDataBinding.ibBookmark.setImageDrawable(
+                ContextCompat.getDrawable(it.context, R.drawable.ic_bookmark_filled)
+            )
+        }
     
         Glide.with(holder.recipesDataBinding.root.context)
             .load(mainRecipe.mealImg)

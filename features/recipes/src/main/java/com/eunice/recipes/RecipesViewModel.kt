@@ -1,12 +1,11 @@
 package com.eunice.recipes
 
-import android.content.Context
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import com.eunice.domain.handler.DataResult
 import com.eunice.domain.model.Category
 import com.eunice.domain.model.Meal
-import com.eunice.domain.usecase.FetchFullCategoriesUseCase
+import com.eunice.domain.usecase.AddMealToFavouritesUseCase
+import com.eunice.domain.usecase.FetchCategoryDataUseCase
 import com.eunice.domain.usecase.FetchRandomMealUseCase
 import com.eunice.domain.usecase.FetchSearchedMealsUseCase
 import com.eunice.utils.Prefs
@@ -17,14 +16,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
-    private val fullCategoriesUseCase: FetchFullCategoriesUseCase,
+    private val fullCategoriesUseCase: FetchCategoryDataUseCase,
     private val searchedMealsUseCase: FetchSearchedMealsUseCase,
     private val randomMealUseCase: FetchRandomMealUseCase,
+    private val addMealToFavouritesUseCase: AddMealToFavouritesUseCase,
     private val prefs: Prefs
 ) : ViewModel() {
     
     private val _mealUIState = MutableStateFlow(MealUIState(isLoading = true))
     val mealUIState: StateFlow<MealUIState> = _mealUIState
+
+    private val _favouriteMealUIState = MutableStateFlow(FavouriteMealUIState())
+    val favouriteMealUIState: StateFlow<FavouriteMealUIState> = _favouriteMealUIState
     
     private val _mealWithCategoriesUIState = MutableStateFlow(MealWithCategoryUIState(isLoading = true))
     val mealWithCategoriesUIState: StateFlow<MealWithCategoryUIState> = _mealWithCategoriesUIState
@@ -94,7 +97,7 @@ class RecipesViewModel @Inject constructor(
     
     private suspend fun getCategories(randomMeal: Meal) {
         when (val categories =
-            fullCategoriesUseCase.invoke().first()) {
+            fullCategoriesUseCase().first()) {
             is DataResult.Success -> {
                 prefs.saveFullCategories(categories.data)
                 _mealWithCategoriesUIState.update {
@@ -113,10 +116,26 @@ class RecipesViewModel @Inject constructor(
             }
         }
     }
+
+    suspend fun markMealAsFavourite(mealId: String) {
+        when (val mealName = addMealToFavouritesUseCase.invoke(mealId).first()) {
+            is DataResult.Error -> _favouriteMealUIState.update {
+                    uiState -> uiState.copy(favouriteMealName = null,
+                        errorMessage = getErrorResponse(mealName.error)
+            ) }
+            is DataResult.Success -> _favouriteMealUIState.update {
+                    uiState -> uiState.copy(favouriteMealName = mealName.data) }
+        }
+    }
     
     data class MealUIState(
         val isLoading: Boolean = false,
         val meals: List<Meal>? = emptyList(),
+        val errorMessage: String? = null
+    )
+
+    data class FavouriteMealUIState(
+        val favouriteMealName: String? = "",
         val errorMessage: String? = null
     )
     

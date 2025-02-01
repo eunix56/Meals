@@ -1,9 +1,12 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
+    namespace = "com.eunice.favourites"
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
@@ -40,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(Dependencies.ProjectLib.commonView))
+    implementation(project(Dependencies.ProjectLib.commonUtils))
 
     Dependencies.View.run {
         implementation(appCompat)
@@ -47,11 +51,18 @@ dependencies {
         implementation(material)
     }
 
+    Dependencies.DI.run {
+        implementation(daggerHilt)
+        kapt(Dependencies.DI.AnnotationProcessor.daggerHilt)
+    }
+
     Dependencies.AndroidX.run {
         implementation(coreKtx)
         implementation(legacySupport)
         implementation(viewModel)
         implementation(lifecycleRuntime)
+        implementation(navigationUiKtx)
+        implementation(navigationFragmentKtx)
     }
 
     Dependencies.UnitTesting.run {

@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    namespace = "com.eunice.navigation"
+
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk

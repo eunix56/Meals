@@ -6,6 +6,6 @@ package com.eunice.remote.model
  * Email: {eunice@reach.africa}
  */
 
-data class IngredientMealsModel(
+class IngredientMealsModel(
     val meals: List<IngredientModel>
 )

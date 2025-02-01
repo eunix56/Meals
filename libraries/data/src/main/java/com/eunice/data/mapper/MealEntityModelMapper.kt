@@ -1,7 +1,10 @@
 package com.eunice.data.mapper
 
-import com.eunice.data.entities.MealEntity
+import com.eunice.data.db.entity.MealEntity
+import com.eunice.data.entities.MealDTO
 import com.eunice.data.mapper.base.EntityModelMapper
+import com.eunice.domain.model.IngredientData
+import com.eunice.domain.model.Instruction
 import com.eunice.domain.model.Meal
 
 /**
@@ -17,51 +20,12 @@ class MealEntityModelMapper
             entity.mealName,
             entity.mealImg,
             entity.drink,
-            entity.mealCategory,
-            entity.mealArea,
+            entity.mealCategory ?: "Meal",
+            entity.mealArea ?: "World",
             entity.mealSteps,
             entity.mealTags,
             entity.mealVideo,
-            entity.ingredientOne,
-            entity.ingredientTwo,
-            entity.ingredientThree,
-            entity.ingredientFour,
-            entity.ingredientFive,
-            entity.ingredientSix,
-            entity.ingredientSeven,
-            entity.ingredientEight,
-            entity.ingredientNine,
-            entity.ingredientTen,
-            entity.ingredientEleven,
-            entity.ingredientTwelve,
-            entity.ingredientThirteen,
-            entity.ingredientFourteen,
-            entity.ingredientFifteen,
-            entity.ingredientSixteen,
-            entity.ingredientSeventeen,
-            entity.ingredientEighteen,
-            entity.ingredientNineteen,
-            entity.ingredientTwenty,
-            entity.measureOne,
-            entity.measureTwo,
-            entity.measureThree,
-            entity.measureFour,
-            entity.measureFive,
-            entity.measureSix,
-            entity.measureSeven,
-            entity.measureEight,
-            entity.measureNine,
-            entity.measureTen,
-            entity.measureEleven,
-            entity.measureTwelve,
-            entity.measureThirteen,
-            entity.measureFourteen,
-            entity.measureFifteen,
-            entity.measureSixteen,
-            entity.measureSeventeen,
-            entity.measureEighteen,
-            entity.measureNineteen,
-            entity.measureTwenty,
+            entity.ingredients,
             entity.mealSource,
             entity.mealImgSource
         )
@@ -78,48 +42,56 @@ class MealEntityModelMapper
             domain.mealSteps,
             domain.mealTags,
             domain.mealVideo,
-            domain.ingredientOne,
-            domain.ingredientTwo,
-            domain.ingredientThree,
-            domain.ingredientFour,
-            domain.ingredientFive,
-            domain.ingredientSix,
-            domain.ingredientSeven,
-            domain.ingredientEight,
-            domain.ingredientNine,
-            domain.ingredientTen,
-            domain.ingredientEleven,
-            domain.ingredientTwelve,
-            domain.ingredientThirteen,
-            domain.ingredientFourteen,
-            domain.ingredientFifteen,
-            domain.ingredientSixteen,
-            domain.ingredientSeventeen,
-            domain.ingredientEighteen,
-            domain.ingredientNineteen,
-            domain.ingredientTwenty,
-            domain.measureOne,
-            domain.measureTwo,
-            domain.measureThree,
-            domain.measureFour,
-            domain.measureFive,
-            domain.measureSix,
-            domain.measureSeven,
-            domain.measureEight,
-            domain.measureNine,
-            domain.measureTen,
-            domain.measureEleven,
-            domain.measureTwelve,
-            domain.measureThirteen,
-            domain.measureFourteen,
-            domain.measureFifteen,
-            domain.measureSixteen,
-            domain.measureSeventeen,
-            domain.measureEighteen,
-            domain.measureNineteen,
-            domain.measureTwenty,
+            domain.ingredients,
             domain.mealSource,
             domain.mealImgSource
         )
+    }
+
+    fun mapFromDTO(mealDTO: MealDTO): MealEntity {
+        return MealEntity(
+            mealDTO.id, mealDTO.mealName, mealDTO.mealImg, mealDTO.drink, mealDTO.mealCategory,
+            mealDTO.mealArea, mealDTO.mealSteps, mealDTO.mealTags, mealDTO.mealVideo,
+            convertMealToIngredients(mealDTO), mealDTO.mealSource, mealDTO.mealImgSource
+        )
+    }
+
+    fun mapToDomain(mealDTO: MealDTO): Meal {
+        return Meal(
+            mealDTO.id, mealDTO.mealName, mealDTO.mealImg, mealDTO.drink, mealDTO.mealCategory ?: "Meal",
+            mealDTO.mealArea ?: "World", mealDTO.mealSteps, mealDTO.mealTags, mealDTO.mealVideo,
+            convertMealToIngredients(mealDTO), mealDTO.mealSource, mealDTO.mealImgSource
+        )
+    }
+
+    private fun convertMealToIngredients(meal: MealDTO): List<IngredientData> {
+        val ingredientsData = ArrayList<IngredientData>()
+
+        ingredientsData.add(IngredientData(meal.ingredientOne, meal.measureOne))
+        ingredientsData.add(IngredientData(meal.ingredientTwo, meal.measureTwo))
+        ingredientsData.add(IngredientData(meal.ingredientThree, meal.measureThree))
+        ingredientsData.add(IngredientData(meal.ingredientFour, meal.measureFour))
+        ingredientsData.add(IngredientData(meal.ingredientFive, meal.measureFive))
+        ingredientsData.add(IngredientData(meal.ingredientSix, meal.measureSix))
+        ingredientsData.add(IngredientData(meal.ingredientSeven, meal.measureSeven))
+        ingredientsData.add(IngredientData(meal.ingredientEight, meal.measureEight))
+        ingredientsData.add(IngredientData(meal.ingredientNine, meal.measureNine))
+        ingredientsData.add(IngredientData(meal.ingredientTen, meal.measureTen))
+        ingredientsData.add(IngredientData(meal.ingredientEleven, meal.measureEleven))
+        ingredientsData.add(IngredientData(meal.ingredientTwelve, meal.measureTwelve))
+        ingredientsData.add(IngredientData(meal.ingredientThirteen, meal.measureThirteen))
+        ingredientsData.add(IngredientData(meal.ingredientFourteen, meal.measureFourteen))
+        ingredientsData.add(IngredientData(meal.ingredientFifteen, meal.measureFifteen))
+        ingredientsData.add(IngredientData(meal.ingredientSixteen, meal.measureSixteen))
+        ingredientsData.add(IngredientData(meal.ingredientSeventeen, meal.measureSeventeen))
+        ingredientsData.add(IngredientData(meal.ingredientEighteen, meal.measureEighteen))
+        ingredientsData.add(IngredientData(meal.ingredientNineteen, meal.measureNineteen))
+        ingredientsData.add(IngredientData(meal.ingredientTwenty, meal.measureTwenty))
+
+        val mainIngredients = ingredientsData.filter { data ->
+            !data.ingredient.isNullOrEmpty()
+        }.distinct()
+
+        return mainIngredients
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -42,13 +43,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/large_spacing"
         android:layout_marginTop="@dimen/normal_spacing"
-        android:background="@drawable/bg_grey_box"
+        android:background="@drawable/bg_grey_card"
         app:searchIcon="@drawable/ic_search"
         app:closeIcon="@drawable/ic_close_24"
         app:defaultQueryHint="Search for meals"
         app:iconifiedByDefault="false"
         android:theme="@style/SearchTextView"
-        app:queryBackground="@color/background_colour"
+        app:queryBackground="@color/grey_card"
         />
 
     <com.airbnb.lottie.LottieAnimationView
@@ -75,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginStart="6dp"
         tools:listitem="@layout/item_category"
         />
 
@@ -107,12 +108,14 @@
         android:id="@+id/rv_category_meals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_spacing"
         app:layout_constraintTop_toBottomOf="@id/tv_category_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         tools:listitem="@layout/item_category_meal"
+        android:layout_marginBottom="@dimen/normal_spacing"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,72 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.eunice.ingredients.AreaDetailFragment">
+
+    <ImageView
+        android:id="@+id/iv_go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_spacing"
+        app:layout_constraintTop_toTopOf="@id/tv_area_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_area_name"
+        android:src="@drawable/ic_go_back"
+        android:contentDescription="@string/go_back" />
+
+
+    <TextView
+        android:id="@+id/tv_area_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/very_large_spacing"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_go_back"
+        android:theme="@style/HeaderTextView"
+        android:textColor="@color/main_colour"
+        tools:text="Canada"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_area_meals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_area_meals"
+        app:layout_constraintTop_toBottomOf="@id/tv_area_name"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+    <TextView
+        android:id="@+id/tv_other_areas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/very_large_spacing"
+        app:layout_constraintStart_toStartOf="@id/iv_go_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        app:layout_constraintTop_toBottomOf="@id/rv_area_meals"
+        tools:text="Meals from other places"
+        android:theme="@style/SmallHeaderTextView"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_meals_from_places"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_other_areas"
+        app:layout_constraintStart_toStartOf="@id/tv_other_areas"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_other_areas"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

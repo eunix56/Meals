@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/bg_main_meal"
+    android:layout_marginTop="18dp"
+    android:layout_marginStart="@dimen/normal_spacing"
+    android:layout_marginEnd="@dimen/normal_spacing"
+    android:paddingBottom="@dimen/normal_spacing">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        tools:src="@drawable/ing"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bg_main_meal"
+        android:contentDescription="@string/ingredient_image"
+        />
+
+    <TextView
+        android:id="@+id/tv_ingredient_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_spacing"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:theme="@style/CategoryMealTextView"
+        tools:text="Chicken"
+        />
+
+    <TextView
+        android:id="@+id/tv_ingredient_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        android:theme="@style/CardGreyTextView"
+        android:textColor="@color/text_colour"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="The chicken is a type of domesticated fowl, a subspecies of the fowl family telling us of the special"
+        />
+
+    <TextView
+        android:id="@+id/tv_read_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_spacing"
+        android:layout_marginEnd="@dimen/normal_spacing"
+        android:layout_marginTop="2dp"
+        android:theme="@style/NumberingTextView"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/read_more"
+        />
+
+</LinearLayout>

@@ -6,4 +6,14 @@
     <string name="meal_of_the_day">Meal of the day</string>
     <string name="categories">Categories</string>
     <string name="search_results">Search Results</string>
+    <string name="category_image">Category image</string>
+    <string name="set_as_favourite">Set as favourite</string>
+    <string name="meal_image">Meal image</string>
+    <string name="bookmark_meal">Bookmark meal</string>
+    <string name="return_to_previous">Return to previous</string>
+    <string name="image_of_the_day">Image of the day</string>
+    <string name="meal_removed_from_fav">%s removed from Favourites successfully!</string>
+    <string name="meal_added_to_fav">%s added to Favourites successfully!</string>
+    <string name="unable_to_remove_from_fav">Unable to remove from Favourites, please try again :)</string>
+    <string name="unable_to_add_to_fav">Unable to add to Favourites because %s, please try again :)</string>
 </resources>

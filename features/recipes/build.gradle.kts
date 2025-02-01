@@ -7,6 +7,8 @@ plugins {
 }
 
 android {
+    namespace = "com.eunice.recipes"
+
     defaultConfig {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk

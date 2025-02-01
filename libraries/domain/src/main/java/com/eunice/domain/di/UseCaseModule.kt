@@ -1,8 +1,6 @@
 package com.eunice.domain.di
 
-import com.eunice.domain.repository.CategoryRepository
-import com.eunice.domain.repository.IngredientRepository
-import com.eunice.domain.repository.MealRepository
+import com.eunice.domain.repository.*
 import com.eunice.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -25,11 +23,11 @@ object UseCaseModule {
 
     @[Provides Singleton]
     fun fetchCategoriesUseCase(categoryRepository: CategoryRepository)
-            : FetchCategoriesUseCase = FetchCategoriesUseCase(categoryRepository)
+            : GetCategoryNamesUseCase = GetCategoryNamesUseCase(categoryRepository)
 
     @[Provides Singleton]
     fun fetchFullCategoriesUseCase(categoryRepository: CategoryRepository)
-            : FetchFullCategoriesUseCase = FetchFullCategoriesUseCase(categoryRepository)
+            : FetchCategoryDataUseCase = FetchCategoryDataUseCase(categoryRepository)
 
     @[Provides Singleton]
     fun fetchIngredientMealsUseCase(mealRepository: MealRepository)
@@ -38,6 +36,14 @@ object UseCaseModule {
     @[Provides Singleton]
     fun fetchIngredientUseCase(ingredientRepository: IngredientRepository)
             : FetchIngredientsUseCase = FetchIngredientsUseCase(ingredientRepository)
+
+    @[Provides Singleton]
+    fun fetchPlacesMealsUseCase(mealRepository: MealRepository)
+            : FetchPlacesMealsUseCase = FetchPlacesMealsUseCase(mealRepository)
+
+    @[Provides Singleton]
+    fun fetchAreaUseCase(areaRepository: AreaRepository)
+            : FetchPlacesUseCase = FetchPlacesUseCase(areaRepository)
 
     @[Provides Singleton]
     fun fetchSearchedMealsUseCase(mealRepository: MealRepository)
@@ -50,6 +56,16 @@ object UseCaseModule {
     @[Provides Singleton]
     fun fetchRandomMeal(mealRepository: MealRepository)
             : FetchRandomMealUseCase = FetchRandomMealUseCase(mealRepository)
+
+    @[Provides Singleton]
+    fun fetchFavouriteMeal(favouriteRepository: FavouriteRepository):
+            FetchFavouriteMealsUseCase = FetchFavouriteMealsUseCase(favouriteRepository)
     
-    
+    @[Provides Singleton]
+    fun removeMealFromFavourites(favouriteRepository: FavouriteRepository):
+            RemoveMealFromFavouritesUseCase = RemoveMealFromFavouritesUseCase(favouriteRepository)
+
+    @[Provides Singleton]
+    fun addMealToFavourites(mealRepository: MealRepository):
+            AddMealToFavouritesUseCase = AddMealToFavouritesUseCase(mealRepository)
 }

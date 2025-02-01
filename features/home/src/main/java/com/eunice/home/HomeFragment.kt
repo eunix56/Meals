@@ -9,7 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.eunice.domain.model.Category
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.eunice.home.databinding.HomeFragmentBinding
 import com.eunice.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MealCategory {
+class HomeFragment : Fragment() {
     private lateinit var homeFragmentBinding: HomeFragmentBinding
     
     @Inject
@@ -72,9 +73,13 @@ class HomeFragment : Fragment(), MealCategory {
         homeFragmentBinding.searchBar.visibility = if (uiState.isLoading)
             View.GONE else View.VISIBLE
     
-        if (uiState.categories.isNotEmpty()) {
-            val categoryAdapter = MealCategoryAdapter(uiState.categories,
-                this@HomeFragment)
+        if (uiState.categoryNames.isNotEmpty()) {
+            val categoryAdapter = MealCategoryAdapter(uiState.categoryNames,
+                ) {
+                lifecycleScope.launchWhenStarted {
+                    viewModel.selectCategory(it)
+                }
+            }
             
             homeFragmentBinding.rvCategory.adapter = categoryAdapter
         }
@@ -99,6 +104,13 @@ class HomeFragment : Fragment(), MealCategory {
             val categoryMealsAdapter = CategoryMealsAdapter(mealsUIState.meals) { id ->
                 navigator.navigateToRecipesDetailsFlow(id)
             }
+            val layoutManager = object : LinearLayoutManager(requireContext(), HORIZONTAL, false) {
+                override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                    lp?.width = (width * 0.85).toInt()
+                    return true
+                }
+            }
+            homeFragmentBinding.rvCategoryMeals.layoutManager = layoutManager
             homeFragmentBinding.rvCategoryMeals.adapter = categoryMealsAdapter
         }
     
@@ -112,7 +124,7 @@ class HomeFragment : Fragment(), MealCategory {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                return if (p0.isNullOrEmpty() || p0.isNullOrBlank())
+                return if (p0.isNullOrBlank())
                     false
                 else {
                     navigator.navigateToSearchResultsFlow(p0.trim())
@@ -125,12 +137,6 @@ class HomeFragment : Fragment(), MealCategory {
             }
     
         })
-    }
-
-    override fun selectCategory(category: Category) {
-        lifecycleScope.launchWhenStarted {
-            viewModel.selectCategory(category.categoryName)
-        }
     }
 
 }

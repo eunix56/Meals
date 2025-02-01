@@ -9,5 +9,5 @@
     <item android:state_selected="true" android:state_enabled="true"
         android:drawable="@drawable/bg_peach_box"
         />
-    <item android:drawable="@drawable/bg_grey_box" />
+    <item android:drawable="@drawable/bg_grey_card" />
 </selector>

@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
  * Created by EUNICE BAKARE T. on 11/03/2022
  * Email: eunice@reach.africa
  */
-data class IngredientModel(
+class IngredientModel(
     @Json(name = "idIngredient")
     val id: String,
     @Json(name = "strIngredient")
@@ -15,5 +15,4 @@ data class IngredientModel(
     val description: String?,
     @Json(name = "strType")
     val type: String?
-) {
-}
+)

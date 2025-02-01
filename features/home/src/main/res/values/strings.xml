@@ -2,4 +2,5 @@
 <resources>
     <string name="cook_a_nice_meal_header">Want to cook a nice meal?</string>
     <string name="welcome_header">Welcome!</string>
+    <string name="food_image">Food image</string>
 </resources>

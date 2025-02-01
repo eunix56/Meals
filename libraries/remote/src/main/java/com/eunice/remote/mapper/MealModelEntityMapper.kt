@@ -1,6 +1,6 @@
 package com.eunice.remote.mapper
 
-import com.eunice.data.entities.MealEntity
+import com.eunice.data.entities.MealDTO
 import com.eunice.remote.mapper.base.RemoteModelEntityMapper
 import com.eunice.remote.model.MealModel
 
@@ -9,10 +9,10 @@ import com.eunice.remote.model.MealModel
  * Email: eunice@reach.africa
  */
 class MealModelEntityMapper:
-    RemoteModelEntityMapper<MealModel, MealEntity> {
+    RemoteModelEntityMapper<MealModel, MealDTO> {
 
-    override fun mapFromModel(model: MealModel): MealEntity {
-        return MealEntity(
+    override fun mapFromModel(model: MealModel): MealDTO {
+        return MealDTO(
             model.id,
             model.mealName,
             model.mealImg,
