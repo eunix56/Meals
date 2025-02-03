@@ -34,7 +34,7 @@ class SearchedMealsAdapter(private val searchedMeals: List<Meal>,
                 
                 Glide.with(holder.searchedMealBinding.root.context)
                     .load(searchedMeal.mealImg)
-                    .placeholder(R.drawable.ic_empty_screen)
+                    .placeholder(cm.eunice.view.R.drawable.ic_empty_screen)
                     .into(holder.searchedMealBinding.ivMealImg)
                 holder.searchedMealBinding.tvMealName.text = searchedMeal.mealName
                 holder.searchedMealBinding.tvMealArea.text = searchedMeal.mealArea
@@ -42,7 +42,7 @@ class SearchedMealsAdapter(private val searchedMeals: List<Meal>,
                 holder.searchedMealBinding.ibBookmark.setOnClickListener {
                     onAddToFavourites(searchedMeal)
                     holder.searchedMealBinding.ibBookmark.setImageDrawable(
-                        ContextCompat.getDrawable(it.context, R.drawable.ic_bookmark_filled)
+                        ContextCompat.getDrawable(it.context, cm.eunice.view.R.drawable.ic_bookmark_filled)
                     )
                 }
                 

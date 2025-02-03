@@ -14,11 +14,11 @@ object Version {
     val lottie = "4.0.0"
     val glide = "4.13.0"
 
-    val coreKtx = "1.7.0"
+    val coreKtx = "1.8.0"
     val legacySupport = "1.0.0"
     val navigation = "2.5.0"
     val lifecycleKtx = "2.4.1"
-    val room = "2.4.1"
+    val room = "2.6.0"
 
 
     val retrofit = "2.9.0"

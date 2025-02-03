@@ -3,10 +3,10 @@ package com.eunice.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import cm.eunice.view.databinding.ItemMealBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.eunice.domain.model.Meal
-import com.eunice.view.databinding.ItemMealBinding
 
 /**
  * Created by EUNICE BAKARE T. on 20/04/2022

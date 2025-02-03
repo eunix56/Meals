@@ -72,7 +72,7 @@ class IngredientsAdapter(private val adapter: PlacesAdapter,
         : IngredientsViewHolder(ingredientsBinding.root) {
             fun bind(ingredient: Ingredient) = with(ingredientsBinding) {
                val imageUrl = "https://www.themealdb.com/images/ingredients/${ingredient.ingredientName}.png"
-                ivImg.imageWithPlaceholder(imageUrl, R.drawable.ing)
+                ivImg.imageWithPlaceholder(imageUrl, cm.eunice.view.R.drawable.ing)
                 tvIngredientName.text = ingredient.ingredientName
                 tvIngredientDesc.text = ingredient.description
                 root.setOnClickListener {

@@ -28,7 +28,7 @@ class FullCategoriesAdapter(private var fullCategories: List<Category>,
         
         Glide.with(holder.fullCategoryBinding.root.context)
             .load(category.categoryImg)
-            .placeholder(R.drawable.ic_empty_screen)
+            .placeholder(cm.eunice.view.R.drawable.ic_empty_screen)
             .fitCenter()
             .into(holder.fullCategoryBinding.ivCategoryImg)
         holder.fullCategoryBinding.tvCategoryTitle.text = category.categoryName

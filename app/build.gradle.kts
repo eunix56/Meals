@@ -39,8 +39,8 @@ android {
     }
 
     @Suppress("UnstableApiUsage")
-    viewBinding {
-        android.buildFeatures.viewBinding = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -53,6 +53,7 @@ dependencies {
     implementation(project(Dependencies.ProjectLib.home))
     implementation(project(Dependencies.ProjectLib.recipes))
     implementation(project(Dependencies.ProjectLib.favourites))
+    implementation(project(Dependencies.ProjectLib.ingredients))
 
     Dependencies.View.run {
         implementation(appCompat)

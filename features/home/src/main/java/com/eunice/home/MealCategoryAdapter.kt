@@ -35,7 +35,7 @@ class MealCategoryAdapter(private val categoryNames: List<String>,
             .into(holder.binding.ivCategoryImg)
 
         holder.binding.tvCategoryTitle.text = categoryName
-        holder.binding.flBackground.background = ContextCompat.getDrawable(context, R.drawable.bg_grey_card)
+        holder.binding.flBackground.background = ContextCompat.getDrawable(context, cm.eunice.view.R.drawable.bg_grey_card)
 
         holder.binding.root.setOnClickListener {
             if (checkedPosition == holder.adapterPosition) {
