@@ -10,7 +10,7 @@
 
     <include app:graph="@navigation/recipe_details_graph" />
 
-    <include app:graph="@navigation/ingredient_graph" />
+    <include app:graph="@navigation/ingredients_graph" />
 
     <include app:graph="@navigation/favourites_graph" />
 
@@ -38,7 +38,7 @@
 
     <action
         android:id="@+id/actionGlobalIngredientsFlow"
-        app:destination="@id/ingredient_graph"
+        app:destination="@id/ingredients_graph"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popUpTo="@id/nav_graph"

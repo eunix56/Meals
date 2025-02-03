@@ -105,12 +105,12 @@ class RecipeDetailsFragment : Fragment() {
         if (addToFavourite) {
             recipeDetailsBinding.ibBookmark.setImageDrawable(
                 ContextCompat.getDrawable(requireContext(),
-                    R.drawable.ic_bookmark_filled)
+                    cm.eunice.view.R.drawable.ic_bookmark_filled)
             )
         } else {
             recipeDetailsBinding.ibBookmark.setImageDrawable(
                 ContextCompat.getDrawable(requireContext(),
-                    R.drawable.ic_bookmark)
+                    cm.eunice.view.R.drawable.ic_bookmark)
             )
         }
     }
@@ -122,7 +122,7 @@ class RecipeDetailsFragment : Fragment() {
             Glide
                 .with(this@RecipeDetailsFragment)
                 .load(mealUIState.meal.mealImg)
-                .placeholder(R.drawable.ic_empty_screen)
+                .placeholder(cm.eunice.view.R.drawable.ic_empty_screen)
                 .into(recipeDetailsBinding.ivMealImage)
 
             updateBookmark(mealUIState.isFavourite)

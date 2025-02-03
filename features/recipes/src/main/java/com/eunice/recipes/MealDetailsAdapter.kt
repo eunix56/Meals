@@ -52,7 +52,7 @@ class MealDetailsAdapter(private val recipe: Meal) :
                 
                 Glide.with(holder.ingredientBinding.root.context)
                     .load("https://www.themealdb.com/images/ingredients/${ingredient.ingredient}.png")
-                    .placeholder(R.drawable.ic_empty_screen)
+                    .placeholder(cm.eunice.view.R.drawable.ic_empty_screen)
                     .apply(RequestOptions().override(65, 70))
                     .fitCenter()
                     .into(holder.ingredientBinding.ivIngredientImg)
@@ -136,9 +136,9 @@ class MealTitleViewHolder(val titleBinding: ItemMealTitleBinding):
                 titleBinding.tvInstructions.background =
                     ContextCompat.getDrawable(context, R.drawable.bg_right)
                 titleBinding.tvIngredients.setTextColor(
-                    ContextCompat.getColor(context, R.color.mini_text_colour))
+                    ContextCompat.getColor(context, cm.eunice.view.R.color.mini_text_colour))
                 titleBinding.tvInstructions.setTextColor(
-                    ContextCompat.getColor(context, R.color.selector_text_colour))
+                    ContextCompat.getColor(context, cm.eunice.view.R.color.selector_text_colour))
             }
             
             onItemClick(isIngredient)
@@ -150,11 +150,11 @@ class MealTitleViewHolder(val titleBinding: ItemMealTitleBinding):
                 titleBinding.tvInstructions.background =
                     ContextCompat.getDrawable(context, R.drawable.bg_right_selected)
                 titleBinding.tvInstructions.setTextColor(
-                    ContextCompat.getColor(context, R.color.mini_text_colour))
+                    ContextCompat.getColor(context, cm.eunice.view.R.color.mini_text_colour))
                 titleBinding.tvIngredients.background =
                     ContextCompat.getDrawable(context, R.drawable.bg_left)
                 titleBinding.tvIngredients.setTextColor(
-                    ContextCompat.getColor(context, R.color.selector_text_colour))
+                    ContextCompat.getColor(context, cm.eunice.view.R.color.selector_text_colour))
             } else
                 return@setOnClickListener
             

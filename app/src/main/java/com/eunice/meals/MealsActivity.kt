@@ -8,10 +8,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.eunice.meals.databinding.ActivityMealsBinding
 import com.eunice.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
-import meals.R
-import meals.databinding.ActivityMealsBinding
 import javax.inject.Inject
 
 //Learn RxJava, Flow, Room, Hilt, Navigation components
@@ -25,7 +24,8 @@ class MealsActivity : AppCompatActivity() {
     private lateinit var activityMealsBinding:
             ActivityMealsBinding
     private lateinit var navController: NavController
-    private val topLevels = listOf(R.id.homeFragment, R.id.recipesFragment)
+    private val topLevels = listOf(com.eunice.home.R.id.homeFragment,
+        com.eunice.recipes.R.id.recipesFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

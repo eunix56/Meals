@@ -38,7 +38,7 @@ class MealsWithIngredientAdapter(val onClickMeal: (String) -> Unit):
     ): RecyclerView.ViewHolder(mealWithNameBinding.root) {
         fun bind(meal: Meal) = with(mealWithNameBinding) {
             tvMealName.text = meal.mealName
-            ivMealImg.imageWithPlaceholder(meal.mealImg, R.drawable.ing)
+            ivMealImg.imageWithPlaceholder(meal.mealImg, cm.eunice.view.R.drawable.ing)
             root.setOnClickListener {
                 onClickMeal(meal.id)
             }

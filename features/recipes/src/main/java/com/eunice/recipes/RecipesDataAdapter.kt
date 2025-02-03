@@ -34,13 +34,13 @@ class RecipesDataAdapter(private val mainRecipe: Meal,
         holder.recipesDataBinding.ibBookmark.setOnClickListener {
             onAddToFavourites(mainRecipe)
             holder.recipesDataBinding.ibBookmark.setImageDrawable(
-                ContextCompat.getDrawable(it.context, R.drawable.ic_bookmark_filled)
+                ContextCompat.getDrawable(it.context, cm.eunice.view.R.drawable.ic_bookmark_filled)
             )
         }
     
         Glide.with(holder.recipesDataBinding.root.context)
             .load(mainRecipe.mealImg)
-            .placeholder(R.drawable.ic_empty_screen)
+            .placeholder(cm.eunice.view.R.drawable.ic_empty_screen)
             .into(holder.recipesDataBinding.ivMealImg)
         
         holder.recipesDataBinding.clMealOfDay.setOnClickListener {

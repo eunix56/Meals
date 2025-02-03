@@ -61,7 +61,7 @@ class IngredientDetailFragment : Fragment() {
         Glide
             .with(ivIngredientImg)
             .load("https://www.themealdb.com/images/ingredients/${ingredientName}.png")
-            .placeholder(R.drawable.ing)
+            .placeholder(cm.eunice.view.R.drawable.ing)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(ivIngredientImg)
         tvIngredientName.text = ingredientName

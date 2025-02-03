@@ -93,16 +93,16 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun populateIngredients(ingredient: List<Ingredient>) = with(ingredientsBinding) {
-        val layoutManager = GridLayoutManager(requireContext(), 1)
+        val layoutManager = GridLayoutManager(requireContext(), 2)
         layoutManager.spanSizeLookup = object : SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return if (position == HEADER) 1
                 else 2
             }
         }
-        adapter.submitList(ingredient)
         rvIngredients.layoutManager = layoutManager
         rvIngredients.adapter = adapter
+        adapter.submitList(ingredient)
     }
 
     companion object {

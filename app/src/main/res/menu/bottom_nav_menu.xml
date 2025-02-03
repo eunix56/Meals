@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_recipes_24"
         />
 
-    <item android:id="@+id/ingredient_graph"
+    <item android:id="@+id/ingredients_graph"
         android:title="@string/ingredients"
         android:icon="@drawable/ic_ingredients_24"
         />
