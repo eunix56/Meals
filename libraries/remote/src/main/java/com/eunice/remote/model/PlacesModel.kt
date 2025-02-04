@@ -8,7 +8,7 @@ import com.squareup.moshi.Json
  */
 
 class PlacesModel(
-    @Json(name = "meal")
+    @Json(name = "meals")
     val places: List<Places>
 )
 

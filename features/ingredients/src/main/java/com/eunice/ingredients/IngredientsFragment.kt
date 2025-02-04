@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eunice.domain.model.Ingredient
 import com.eunice.ingredients.databinding.FragmentIngredientsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,7 +85,8 @@ class IngredientsFragment : Fragment() {
         }
 
         if (uiState.errorMessage?.isNotBlank() == true) {
-
+            Toast.makeText(requireContext(), uiState.errorMessage,
+                Toast.LENGTH_LONG).show()
         }
     }
 
@@ -100,13 +102,7 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun populateIngredients(ingredient: List<Ingredient>) = with(ingredientsBinding) {
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (position == HEADER) 1
-                else 2
-            }
-        }
+        val layoutManager = LinearLayoutManager(requireContext())
         rvIngredients.layoutManager = layoutManager
         rvIngredients.adapter = adapter
         adapter.submitList(ingredient)
