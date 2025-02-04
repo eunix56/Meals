@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,15 +26,14 @@ class IngredientDetailFragment : Fragment() {
 
     @Inject
     lateinit var navigator: Navigator
+    private val args by navArgs<IngredientDetailFragmentArgs>()
     private lateinit var viewModel: IngredientDetailViewModel
-    var ingredientName: String = ""
-    var ingredientDesc: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(this)[IngredientDetailViewModel::class.java]
-        viewModel.fetchIngredientMeals(ingredientName)
+        viewModel.fetchIngredientMeals(args.ingredientName)
     }
 
     override fun onCreateView(
@@ -60,12 +60,13 @@ class IngredientDetailFragment : Fragment() {
     private fun setupView() = with(detailBinding) {
         Glide
             .with(ivIngredientImg)
-            .load("https://www.themealdb.com/images/ingredients/${ingredientName}.png")
+            .load("https://www.themealdb.com/images/ingredients/${args.ingredientName}.png")
             .placeholder(cm.eunice.view.R.drawable.ing)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(ivIngredientImg)
-        tvIngredientName.text = ingredientName
-        tvIngredientDescText.text = ingredientDesc
+
+        tvIngredientName.text = args.ingredientName
+        tvIngredientDescText.text = args.ingredientDesc
 
         tvIngredientReadMore.setOnClickListener {
             tvIngredientDescText.maxLines = Int.MAX_VALUE

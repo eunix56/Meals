@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
@@ -15,6 +17,7 @@ import com.eunice.domain.model.Ingredient
 import com.eunice.ingredients.databinding.FragmentIngredientsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class IngredientsFragment : Fragment() {
@@ -58,15 +61,19 @@ class IngredientsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.placesUIState.collect {
-                setPlacesUiState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.placesUIState.collect {
+                    setPlacesUiState(it)
+                }
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.ingredientsUIState.collect {
-                setIngredientsUiState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.ingredientsUIState.collect {
+                    setIngredientsUiState(it)
+                }
             }
         }
     }
