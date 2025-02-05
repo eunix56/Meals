@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eunice.domain.model.Ingredient
 import com.eunice.ingredients.databinding.FragmentIngredientsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,12 +24,13 @@ import kotlinx.coroutines.launch
 class IngredientsFragment : Fragment() {
     private lateinit var ingredientsBinding: FragmentIngredientsBinding
     private val placesAdapter by lazy { PlacesAdapter {
-
+        openAreaDetail(it)
     } }
 
     private val adapter by lazy { IngredientsAdapter(placesAdapter) {
         openIngredientDetail(it)
     } }
+    private val places = mutableListOf<String>()
 
     private fun openIngredientDetail(ingredient: Ingredient) {
         val directions = ingredient.description?.let {
@@ -39,6 +41,13 @@ class IngredientsFragment : Fragment() {
         if (directions != null) {
             findNavController().navigate(directions)
         }
+    }
+
+    private fun openAreaDetail(area: String) {
+        val directions = IngredientsFragmentDirections.actionIngredientsFragmentToAreaDetailFragment(
+            area, places.toTypedArray()
+        )
+        findNavController().navigate(directions)
     }
 
     private lateinit var viewModel: IngredientsViewModel
@@ -80,11 +89,13 @@ class IngredientsFragment : Fragment() {
 
     private fun setPlacesUiState(uiState: IngredientsViewModel.PlacesUIState) {
         if (uiState.places.isNotEmpty()) {
+            places.addAll(uiState.places.map { it.area })
             placesAdapter.submitList(uiState.places)
         }
 
         if (uiState.errorMessage?.isNotBlank() == true) {
-
+            Toast.makeText(requireContext(), uiState.errorMessage,
+                Toast.LENGTH_LONG).show()
         }
     }
 
@@ -100,13 +111,7 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun populateIngredients(ingredient: List<Ingredient>) = with(ingredientsBinding) {
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (position == HEADER) 1
-                else 2
-            }
-        }
+        val layoutManager = LinearLayoutManager(requireContext())
         rvIngredients.layoutManager = layoutManager
         rvIngredients.adapter = adapter
         adapter.submitList(ingredient)

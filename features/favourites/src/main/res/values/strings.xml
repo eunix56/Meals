@@ -4,4 +4,5 @@
     <string name="open_meal">Open meal</string>
     <string name="category_with_slash">Category: %s |</string>
     <string name="area">Area: %s</string>
+    <string name="favourite_meals">Favourite Meals️</string>
 </resources>

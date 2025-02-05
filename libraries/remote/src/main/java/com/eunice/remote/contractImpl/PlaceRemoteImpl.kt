@@ -13,7 +13,6 @@ class PlaceRemoteImpl @Inject constructor(
 
     override suspend fun fetchAreas(): List<PlaceEntity> {
         val areas = mealApiService.getPlaces().places
-        return placeModelEntityMapper.mapModelList(areas
-        )
+        return placeModelEntityMapper.mapModelList(areas)
     }
 }

@@ -15,7 +15,7 @@
         android:layout_marginStart="@dimen/normal_spacing"
         android:theme="@style/HeaderTextView"
         android:textColor="@color/main_colour"
-        tools:text="Favourite Meals ❤️"
+        android:text="@string/favourite_meals"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,7 +27,5 @@
         android:orientation="vertical"
         tools:listitem="@layout/item_favourite"
         />
-
-
 
 </LinearLayout>
