@@ -150,7 +150,9 @@ class MealRepositoryImpl @Inject constructor(
     override suspend fun addMealToFavourites(mealId: String): Flow<DataResult<String>> {
         var result: DataResult<String>
         return flow {
-            val successfulRows = mealDao.updateMealStatus(mealId, true)
+            val successfulRows = withContext(Dispatchers.IO) {
+                mealDao.updateMealStatus(mealId, true)
+            }
             result = DataResult.Success(successfulRows.toString())
             emit(result)
         }.catch { throwable ->

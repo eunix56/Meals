@@ -24,12 +24,13 @@ import kotlinx.coroutines.launch
 class IngredientsFragment : Fragment() {
     private lateinit var ingredientsBinding: FragmentIngredientsBinding
     private val placesAdapter by lazy { PlacesAdapter {
-
+        openAreaDetail(it)
     } }
 
     private val adapter by lazy { IngredientsAdapter(placesAdapter) {
         openIngredientDetail(it)
     } }
+    private val places = mutableListOf<String>()
 
     private fun openIngredientDetail(ingredient: Ingredient) {
         val directions = ingredient.description?.let {
@@ -40,6 +41,13 @@ class IngredientsFragment : Fragment() {
         if (directions != null) {
             findNavController().navigate(directions)
         }
+    }
+
+    private fun openAreaDetail(area: String) {
+        val directions = IngredientsFragmentDirections.actionIngredientsFragmentToAreaDetailFragment(
+            area, places.toTypedArray()
+        )
+        findNavController().navigate(directions)
     }
 
     private lateinit var viewModel: IngredientsViewModel
@@ -81,6 +89,7 @@ class IngredientsFragment : Fragment() {
 
     private fun setPlacesUiState(uiState: IngredientsViewModel.PlacesUIState) {
         if (uiState.places.isNotEmpty()) {
+            places.addAll(uiState.places.map { it.area })
             placesAdapter.submitList(uiState.places)
         }
 
